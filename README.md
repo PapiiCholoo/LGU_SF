@@ -40,3 +40,53 @@ This project provides a modern, responsive, and accessible platform for resident
 ---
 
 ## 📂 Project Structure
+src/ components/ ExplorePage.tsx   # Attractions, facts, barangays ... assets/ sfbeach.jpg isarog.jpg heritage.jpg fiesta2.jpg styles/ ..
+
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (>= 18)
+- npm or yarn
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/your-org/lgu-san-fernando.git
+
+# Navigate into the project
+cd lgu-san-fernando
+
+# Install dependencies
+npm install
+
+---
+📖 Usage
+- Navigate to Explore to view attractions and cultural highlights.
+- Use Serve to access LGU services and organizational information.
+- Check Inform for announcements and updates.
+- Transform section highlights ongoing development programs.
+
+🤝 Contributing
+- Fork the repository
+- Create a new branch (git checkout -b feature/your-feature)
+- Commit changes (git commit -m 'Add new feature')
+- Push to branch (git push origin feature/your-feature)
+- Open a Pull Request
+
+📜 License
+This project is licensed under the MIT License.
+See [Looks like the result wasn't safe to show. Let's switch things up and try something else!] for details.
+
+📧 Contact
+Local Government Unit of San Fernando, Camarines Sur
+- 📍 Municipal Hall, San Fernando, Camarines Sur, Philippines
+- ☎️ (055) XXX-XXXX
+- ✉️ lgu.sanfernando@gov.ph
+- 🕗 Monday – Friday, 8:00 AM – 5:00 PM
+
+---
+
+This README gives developers and contributors a clear overview of the project and aligns with the client’s branding and content structure.  
