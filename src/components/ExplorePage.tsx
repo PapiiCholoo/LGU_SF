@@ -204,7 +204,7 @@ export function ExplorePage() {
         </div>
       </section>
 
-      {/* Tourist Attractions */}
+     {/* Tourist Attractions */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
@@ -220,15 +220,30 @@ export function ExplorePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {attractions.map((attraction) => (
-            <div key={attraction.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+            <div
+              key={attraction.id}
+              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
+            >
+              {/* Image area */}
               <div className="relative h-64 overflow-hidden">
-                <div className={`absolute top-4 right-4 bg-gradient-to-r ${attraction.color} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}>
+                <img
+                  src={attraction.image}
+                  alt={attraction.name}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div
+                  className={`absolute top-4 right-4 bg-gradient-to-r ${attraction.color} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}
+                >
                   {attraction.category}
                 </div>
               </div>
+
+              {/* Text content */}
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${attraction.color} rounded-xl flex items-center justify-center`}>
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-br ${attraction.color} rounded-xl flex items-center justify-center`}
+                  >
                     <attraction.icon className="text-white" size={24} />
                   </div>
                   <h3 className="text-2xl font-bold text-[#003366]">
