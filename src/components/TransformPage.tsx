@@ -12,7 +12,6 @@ import {
   Calendar,
   CheckCircle
 } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function TransformPage() {
   const developmentProjects = [

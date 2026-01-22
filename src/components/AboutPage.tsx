@@ -12,7 +12,6 @@ import {
   Heart,
   TrendingUp
 } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface AboutPageProps {
   scrollToContact?: boolean;

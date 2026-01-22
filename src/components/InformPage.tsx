@@ -13,8 +13,8 @@ import {
   Trophy,
   Lightbulb
 } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import fiestaImage from 'figma:asset/143732561ce83fef0812ea42b341d6445ce7f1db.png';
+
+import fiestaImage from '../assets/fiesta.png';
 
 export function InformPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');

@@ -1,4 +1,8 @@
 import React from 'react';
+import beachImage from '../assets/sfbeach.jpg';
+import mountainImage from '../assets/isarog.jpg';
+import heritageImage from '../assets/heritage.jpg';
+import fiesta from '../assets/fiesta2.jpg';
 import { 
   MapPin, 
   Palmtree, 
@@ -15,7 +19,7 @@ import {
   Award,
   TrendingUp
 } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+
 
 export function ExplorePage() {
   const attractions = [
@@ -24,7 +28,7 @@ export function ExplorePage() {
       name: 'San Fernando Beach',
       category: 'Beach',
       description: 'Crystal clear waters and pristine white sand beaches perfect for swimming and relaxation.',
-      image: 'https://images.unsplash.com/photo-1661822952419-578288377ff4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGlsaXBwaW5lcyUyMHRvdXJpc20lMjBiZWFjaHxlbnwxfHx8fDE3NjkxMDI4MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: beachImage,
       icon: Waves,
       color: 'from-[#00CED1] to-[#20B2AA]'
     },
@@ -33,7 +37,7 @@ export function ExplorePage() {
       name: 'Mount Isarog Views',
       category: 'Nature',
       description: 'Breathtaking views of the majestic Mount Isarog and surrounding natural landscapes.',
-      image: 'https://images.unsplash.com/photo-1736147936446-6a68d66f0e05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGlsaXBwaW5lcyUyMHNjZW5pYyUyMGxhbmRzY2FwZXxlbnwxfHx8fDE3NjkxMDMwNTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: mountainImage,
       icon: Mountain,
       color: 'from-[#FFD700] to-[#F0E68C]'
     },
@@ -42,7 +46,7 @@ export function ExplorePage() {
       name: 'Heritage Sites',
       category: 'Culture',
       description: 'Historical landmarks and cultural heritage sites showcasing San Fernando\'s rich history.',
-      image: 'https://images.unsplash.com/photo-1604237895456-7cba8c9cc59f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGlsaXBwaW5lJTIwbXVuaWNpcGFsJTIwaGFsbHxlbnwxfHx8fDE3Njg1OTEzNTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: heritageImage,
       icon: Building2,
       color: 'from-[#003366] to-[#004d7a]'
     },
@@ -51,7 +55,7 @@ export function ExplorePage() {
       name: 'Fiesta Celebrations',
       category: 'Events',
       description: 'Vibrant festivals and cultural celebrations featuring local traditions and community spirit.',
-      image: 'https://images.unsplash.com/photo-1609051408500-b3ef7377b799?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGlsaXBwaW5lcyUyMGZpZXN0YSUyMGNlbGVicmF0aW9ufGVufDF8fHx8MTc2OTEwMjgzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: fiesta,
       icon: Heart,
       color: 'from-[#17a2b8] to-[#00CED1]'
     }
@@ -218,11 +222,6 @@ export function ExplorePage() {
           {attractions.map((attraction) => (
             <div key={attraction.id} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
               <div className="relative h-64 overflow-hidden">
-                <ImageWithFallback
-                  src={attraction.image}
-                  alt={attraction.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
                 <div className={`absolute top-4 right-4 bg-gradient-to-r ${attraction.color} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}>
                   {attraction.category}
                 </div>
