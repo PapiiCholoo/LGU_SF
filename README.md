@@ -42,7 +42,6 @@ This project provides a modern, responsive, and accessible platform for resident
 ## 📂 Project Structure
 src/ components/ ExplorePage.tsx   # Attractions, facts, barangays ... assets/ sfbeach.jpg isarog.jpg heritage.jpg fiesta2.jpg styles/ ..
 
-
 ---
 
 ## 🚀 Getting Started
@@ -51,18 +50,8 @@ src/ components/ ExplorePage.tsx   # Attractions, facts, barangays ... assets/ s
 - Node.js (>= 18)
 - npm or yarn
 
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/your-org/lgu-san-fernando.git
-
-# Navigate into the project
-cd lgu-san-fernando
-
-# Install dependencies
-npm install
-
 ---
+
 📖 Usage
 - Navigate to Explore to view attractions and cultural highlights.
 - Use Serve to access LGU services and organizational information.
@@ -89,4 +78,24 @@ Local Government Unit of San Fernando, Camarines Sur
 
 ---
 
-This README gives developers and contributors a clear overview of the project and aligns with the client’s branding and content structure.  
+This README gives developers and contributors a clear overview of the project and aligns with the client’s branding and content structure.
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/your-org/lgu-san-fernando.git
+
+# Navigate into the project
+cd lgu-san-fernando
+
+# Install dependencies
+npm install
+
+# Development
+npm run dev
+
+# Build
+npm run build
+
+# Preview
+npm run preview
