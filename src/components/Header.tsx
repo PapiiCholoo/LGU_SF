@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, X } from 'lucide-react';
+import LogoImage from '../assets/logo.png';
 
 type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
@@ -40,11 +41,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
+      
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
-              <div className="text-[#00CED1] font-bold text-xs text-center leading-tight px-2">
-                LGU<br />San<br />Fernando
-              </div>
+            <div>
+              <img
+                src={LogoImage}
+                alt="Municipality Logo"
+                className="h-20 w-30 object-contain"
+              />
             </div>
             <div className="hidden md:block">
               <h1 className="text-xl font-bold leading-tight drop-shadow-md">

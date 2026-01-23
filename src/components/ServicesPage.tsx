@@ -25,6 +25,7 @@ interface Service {
   icon: React.ElementType;
 }
 
+
 export function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
