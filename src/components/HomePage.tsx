@@ -20,6 +20,8 @@ import {
   Lightbulb
 } from 'lucide-react';
 import fiestaImage from '../assets/fiesta.png';
+import { BackendStatus } from './backend/BackendStatus';
+import { UserDirectory } from './backend/UserDirectory';
 
 type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
@@ -399,6 +401,23 @@ export function HomePage({ onNavigate }: HomePageProps) {
               View All Services
               <ArrowRight size={24} />
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Live backend integration */}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4 space-y-10">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-[#003366] mb-3">Connected Services</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <BackendStatus />
+            <UserDirectory />
           </div>
         </div>
       </section>
