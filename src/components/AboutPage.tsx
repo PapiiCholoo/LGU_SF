@@ -83,11 +83,6 @@ export function AboutPage({ scrollToContact = false }: AboutPageProps) {
             </div>
             <div className="relative">
               <div className="rounded-lg overflow-hidden shadow-xl">
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1722503944406-c6a10d6d0be4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGlsaXBwaW5lJTIwZmxhZyUyMGdvdmVybm1lbnR8ZW58MXx8fHwxNzY4NTkxMzU5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                  alt="Philippine Government"
-                  className="w-full h-[400px] object-cover"
-                />
               </div>
             </div>
           </div>
