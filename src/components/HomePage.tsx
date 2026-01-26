@@ -20,6 +20,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import fiestaImage from '../assets/fiesta.png';
+import heroBg from '../assets/hero_bg.jpg';
 import { BackendStatus } from './backend/BackendStatus';
 import { UserDirectory } from './backend/UserDirectory';
 
@@ -31,50 +32,78 @@ interface HomePageProps {
 
 export function HomePage({ onNavigate }: HomePageProps) {
   return (
-    <div>
-      <section className="relative bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#FFD700] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
-        <div className="relative container mx-auto px-4 py-20 md:py-32">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-6">
-              <div className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border-2 border-white/30">
-                <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
-                  KUSOG San Fernando
-                </p>
-              </div>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-              Strength. Resilience. Unity. Progress.
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-white/95 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
-              Official Website of the Municipality of San Fernando, Camarines Sur
+<div>
+  <section className="relative text-white overflow-hidden">
+    
+    {/* Background Image */}
+    <div className="absolute inset-0">
+      <img
+        src={heroBg}
+        alt="San Fernando Camarines Sur"
+        className="w-full h-full object-cover brightness-40"
+      />
+    </div>
+
+    {/* Dark Gradient Overlay for readability */}
+    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+
+    {/* Branding Gradient Tint (keeps LGU colors visible) */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/50 via-[#20B2AA]/50 to-[#FFD700]/40"></div>
+
+    {/* Pattern Overlay (your dotted texture) */}
+    <div className="absolute inset-0 opacity-10">
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }}
+      ></div>
+    </div>
+
+    {/* Content */}
+    <div className="relative container mx-auto px-4 py-20 md:py-32">
+      <div className="text-center max-w-4xl mx-auto">
+        <div className="mb-6">
+          <div className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border-2 border-white/30">
+            <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
+              KUSOG San Fernando
             </p>
-            <p className="text-lg md:text-xl mb-10 text-white/90 max-w-2xl mx-auto">
-              Building a stronger community through transparent governance, innovation, and dedicated public service.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <button
-                onClick={() => onNavigate('serve')}
-                className="bg-[#FFD700] text-[#003366] px-8 py-4 rounded-xl font-bold hover:bg-[#F0E68C] transition-all shadow-xl hover:shadow-2xl inline-flex items-center gap-2 text-lg border-2 border-white/30"
-              >
-                Explore Services
-                <ArrowRight size={24} />
-              </button>
-              <button
-                onClick={() => onNavigate('explore')}
-                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition-all shadow-xl inline-flex items-center gap-2 text-lg"
-              >
-                Discover San Fernando
-                <MapPin size={24} />
-              </button>
-            </div>
           </div>
         </div>
+
+        <h2 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
+          Strength. Resilience. Unity. Progress.
+        </h2>
+
+        <p className="text-xl md:text-2xl mb-8 text-white/95 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
+          Official Website of the Municipality of San Fernando, Camarines Sur
+        </p>
+
+        <p className="text-lg md:text-xl mb-10 text-white/90 max-w-2xl mx-auto">
+          Building a stronger community through transparent governance, innovation, and dedicated public service.
+        </p>
+
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button
+            onClick={() => onNavigate('serve')}
+            className="bg-[#FFD700] text-[#003366] px-8 py-4 rounded-xl font-bold hover:bg-[#F0E68C] transition-all shadow-xl hover:shadow-2xl inline-flex items-center gap-2 text-lg border-2 border-white/30"
+          >
+            Explore Services
+            <ArrowRight size={24} />
+          </button>
+
+          <button
+            onClick={() => onNavigate('explore')}
+            className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition-all shadow-xl inline-flex items-center gap-2 text-lg"
+          >
+            Discover San Fernando
+            <MapPin size={24} />
+          </button>
+        </div>
+      </div>
+    </div>
+
         {/* Decorative wave */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
