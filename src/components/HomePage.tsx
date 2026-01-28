@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Sparkles,
   MapPin,
@@ -28,29 +28,50 @@ type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
 interface HomePageProps {
   onNavigate: (page: Page) => void;
+  
 }
 
+
 export function HomePage({ onNavigate }: HomePageProps) {
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
-<div>
-  <section className="relative text-white overflow-hidden">
     
-    {/* Background Image */}
-    <div className="absolute inset-0">
-      <img
-        src={heroBg}
-        alt="San Fernando Camarines Sur"
-        className="w-full h-full object-cover brightness-40"
-      />
-    </div>
+<div>
+  <section className="relative text-white overflow-hidden h-[120vh]">
+    
+    {/* Parallax Background */}
+    <div
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 will-change-transform"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        transform: `translateY(${offsetY * 0.4}px)`
+      }}
+    />
 
-    {/* Dark Gradient Overlay for readability */}
-    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
+    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-    {/* Branding Gradient Tint (keeps LGU colors visible) */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/50 via-[#20B2AA]/50 to-[#FFD700]/40"></div>
 
-    {/* Pattern Overlay (your dotted texture) */}
+    {/* Dark blur for readability */}
+    <div className="absolute inset-0 bg-black/60 backdrop-blur-md -z-10"></div>
+
+    {/* Brand color atmosphere */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/30 via-[#20B2AA]/25 to-[#FFD700]/20"></div>
+
+
+
+
+    {/* Pattern Overlay (your dotted texture) */} 
     <div className="absolute inset-0 opacity-10">
       <div
         className="absolute inset-0"
@@ -65,14 +86,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
     <div className="relative container mx-auto px-4 py-20 md:py-32">
       <div className="text-center max-w-4xl mx-auto">
         <div className="mb-6">
-          <div className="inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border-2 border-white/30">
+          <div className="inline-block bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
             <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
               KUSOG San Fernando
             </p>
           </div>
         </div>
 
-        <h2 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
+        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
           Strength. Resilience. Unity. Progress.
         </h2>
 
@@ -203,14 +224,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <img 
             src={fiestaImage} 
             alt="Happy Fiesta - Brgy. Pinamasagan" 
-            className="w-full h-[400px] md:h-[500px] object-cover"
+            className="w-full h-[400px] md:h-[500px] object-contain"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
             <div className="container mx-auto px-8 py-12 h-full flex flex-col justify-center max-w-2xl">
               <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
                 FEATURED EVENT
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-2xl">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
                 Happy Fiesta!
               </h2>
               <p className="text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
@@ -242,7 +263,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Newspaper className="text-[#00CED1]" size={32} />
               <div className="w-12 h-1 bg-gradient-to-l from-transparent to-[#00CED1]"></div>
             </div>
-            <h2 className="text-4xl font-bold text-[#003366] mb-3">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
               Latest Updates & Announcements
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -327,7 +348,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* KUSOG Values Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#003366] mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
             KUSOG San Fernando Values
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -390,7 +411,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
               Quick Access to Services
             </h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
@@ -438,10 +459,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 space-y-10">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-[#003366] mb-3">Connected Services</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">Connected Services</h2>
+            
             <p className="text-gray-600 max-w-2xl mx-auto">
               These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.
             </p>
+            <br></br>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -452,4 +475,4 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
     </div>
   );
-}
+} 

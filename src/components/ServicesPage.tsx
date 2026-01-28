@@ -28,6 +28,7 @@ interface Service {
 
 export function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [applyService, setApplyService] = useState<Service | null>(null);
 
   const services: Service[] = [
     // Civil Services
@@ -338,7 +339,7 @@ export function ServicesPage() {
 
       {/* Service Detail Modal */}
       {selectedService && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="sticky top-0 bg-gradient-to-r from-[#003366] to-[#004d7a] text-white p-6 rounded-t-2xl">
               <div className="flex justify-between items-start">
@@ -399,6 +400,15 @@ export function ServicesPage() {
           </div>
         </div>
       )}
-    </div>
+
+      {/*Apply Now Section */}
+      {applyService && (
+        <div>
+          
+        </div>
+      )}
+
+      </div>
+        
   );
 }

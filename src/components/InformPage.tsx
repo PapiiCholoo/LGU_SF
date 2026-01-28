@@ -211,7 +211,7 @@ export function InformPage() {
                 <img 
                   src={featuredAnnouncement.image} 
                   alt={featuredAnnouncement.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
