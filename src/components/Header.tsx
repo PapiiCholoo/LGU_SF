@@ -27,15 +27,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white shadow-lg sticky top-0 z-50">
-      {/* Top Government Banner */}
-      <div className="bg-[#003366] py-1">
-        <div className="container mx-auto px-4">
-          <p className="text-xs text-center text-gray-300">
-            Republic of the Philippines
-          </p>
-        </div>
-      </div>
+    <header className="bg-gradient-to-r from-[#00CED1] to-[#003366] text-white shadow-lg sticky top-0 z-50">
 
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
@@ -46,7 +38,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <div>
               <img
                 src={LogoImage}
-                alt="Municipality Logo"
+                alt="Municipality Logo" 
                 className="h-20 w-30 object-contain"
               />
             </div>
