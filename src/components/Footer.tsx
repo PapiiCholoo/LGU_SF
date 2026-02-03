@@ -101,6 +101,15 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Top Government Banner */}
+      <div className="bg-[#002244] py-1">
+        <div className="container mx-auto px-4">
+          <p className="text-xs text-center text-gray-300">
+            Republic of the Philippines
+          </p>
+        </div>
+      </div>      
     </footer>
   );
 }

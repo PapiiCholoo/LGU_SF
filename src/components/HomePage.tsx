@@ -471,6 +471,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <BackendStatus />
             <UserDirectory />
           </div>
+
         </div>
       </section>
     </div>
