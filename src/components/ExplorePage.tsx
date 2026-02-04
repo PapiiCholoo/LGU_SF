@@ -88,15 +88,13 @@ export function ExplorePage() {
     }
   ];
 
-  const barangays = [
-    'Alianza', 'Alawig', 'Bahao', 'Bocal', 'Bonifacio',
-    'Calasgasan', 'Dayawa', 'La Purisima', 'Mabatang',
-    'Magsaysay', 'Mangayawan', 'Pag-Oring', 'Pamukid',
-    'Pinamasagan', 'Poblacion Central', 'Poblacion Norte',
-    'Poblacion Sur', 'Salvacion', 'San Isidro', 'San Jose',
-    'San Juan', 'San Roque', 'Santa Cruz', 'Tabing-Dagat',
-    'Tagdon', 'Tomolin', 'Uka', 'Villadima', 'Vista Alegre'
-  ];
+const barangays = [
+  'Alianza', 'Beberon', 'Bical', 'Bocal', 'Bonifacio', 
+  'Buenavista', 'Calascagas', 'Cotmo', 'Daculang Tubig', 
+  'Del Pilar', 'Gñaran', 'Grijalvo', 'Lupi', 'Maragñi', 
+  'Pamukid', 'Pinamasagan', 'Pipian', 'Planza', 'Rizal', 
+  'San Joaquin', 'Santa Cruz', 'Tagpocol'
+];
 
   return (
     <div>

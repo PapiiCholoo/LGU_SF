@@ -68,47 +68,19 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           <nav className="hidden lg:flex gap-2">
             {navItems.map((item) => (
               <button
-                key={item.id}
+                key={item.id} 
                 onClick={() => handleNavClick(item.id)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                   currentPage === item.id
-                    ? 'bg-[#FFD700] text-[#003366] font-semibold shadow-md'
-                    : 'hover:bg-white/20 text-white'
+                    ? 'bg-[#F5F5DC] text-[#003366] font-semibold shadow-md'
+                    : 'hover:bg-[#F5F5DC]/20 text-white'
                 }`}
               >
                 {item.label}
               </button>
             ))}
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 hover:bg-white/20 rounded"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-2 flex flex-col gap-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                  currentPage === item.id
-                    ? 'bg-[#FFD700] text-[#003366] font-semibold'
-                    : 'hover:bg-white/20 text-white'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-        )}
       </div>
     </header>
   );
