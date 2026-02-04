@@ -93,7 +93,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
 
-        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white ">
           Strength. Resilience. Unity. Progress.
         </h2>
 
@@ -231,7 +231,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
                 FEATURED EVENT
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Happy Fiesta!
               </h2>
               <p className="text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
@@ -263,7 +263,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Newspaper className="text-[#00CED1]" size={32} />
               <div className="w-12 h-1 bg-gradient-to-l from-transparent to-[#00CED1]"></div>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black ">
               Latest Updates & Announcements
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -348,7 +348,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* KUSOG Values Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black ">
             KUSOG San Fernando Values
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -411,7 +411,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Quick Access to Services
             </h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
@@ -459,7 +459,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 space-y-10">
           <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">Connected Services</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">Connected Services</h2>
             
             <p className="text-gray-600 max-w-2xl mx-auto">
               These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.

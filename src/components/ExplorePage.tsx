@@ -71,7 +71,7 @@ export function ExplorePage() {
     {
       icon: MapPin,
       label: 'Barangays',
-      value: '29',
+      value: '22',
       color: 'from-[#00CED1] to-[#20B2AA]'
     },
     {
@@ -161,7 +161,7 @@ const barangays = [
                 landscapes and opportunities for eco-tourism.
               </p>
               <p>
-                Our 29 barangays work together under the leadership of the local government to provide excellent services and create 
+                Our 22 barangays work together under the leadership of the local government to provide excellent services and create 
                 opportunities for all residents. San Fernando is committed to sustainable development, environmental protection, and 
                 improving the quality of life for all its citizens.
               </p>
@@ -262,10 +262,10 @@ const barangays = [
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-[#003366] mb-4">
-              Our 29 Barangays
+              Our 22 Barangays
             </h2>
             <p className="text-lg text-[#003366]/80 max-w-2xl mx-auto">
-              San Fernando is composed of 29 vibrant barangays, each contributing to our municipality's strength and unity
+              San Fernando is composed of 22 vibrant barangays, each contributing to our municipality's strength and unity
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">

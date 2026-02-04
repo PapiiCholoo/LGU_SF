@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, X } from 'lucide-react';
 import LogoImage from '../assets/logo.png';
 
-type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
+type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative';
 
 interface HeaderProps {
   currentPage: Page;
@@ -27,7 +27,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#0F4C75] to-[#1B262C] text-white sticky top-0 z-50 shadow-md">
+    <header className="bg-gradient-to-r from-slate-900 to-slate-800 text-white sticky top-0 z-50 border-b-4 border-[var(--color-brand-turquoise)]">
 
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
@@ -43,24 +43,24 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               />
             </div>
             <div className="hidden md:block">
-              <h1 className="text-xl font-bold leading-tight">
+              <h1 className="text-xl font-bold leading-tight text-white">
                 Official Website of the Municipality of
               </h1>
-              <p className="text-lg text-[#F4D03F]">
+              <p className="text-lg font-bold text-[var(--color-brand-khaki)]">
                 San Fernando, Camarines Sur
               </p>
-              <p className="text-sm font-semibold text-white/90 italic mt-1">
+              <p className="text-sm font-semibold text-[var(--color-brand-aqua)] italic mt-1">
                 KUSOG San Fernando
               </p>
             </div>
             <div className="md:hidden">
-              <h1 className="font-bold leading-tight">
+              <h1 className="font-bold leading-tight text-white">
                 LGU San Fernando
               </h1>
-              <p className="text-sm text-[#F4D03F]">
+              <p className="text-sm font-bold text-[var(--color-brand-khaki)]">
                 Camarines Sur
               </p>
-              <p className="text-xs italic">KUSOG San Fernando</p>
+              <p className="text-xs font-semibold text-[var(--color-brand-aqua)] italic">KUSOG San Fernando</p>
             </div>
           </div>
 
@@ -70,10 +70,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 
+                className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium
                   ${currentPage === item.id
-                    ? 'bg-[#F4D03F] text-[#1B262C] font-semibold'
-                    : 'hover:bg-[#F4D03F]/10 text-white/90 hover:text-white'
+                    ? 'bg-[var(--color-brand-turquoise)] text-slate-900 font-bold'
+                    : 'text-gray-300 hover:text-[var(--color-brand-khaki)] hover:bg-white/5'
                   }`}
               >
                 {item.label}

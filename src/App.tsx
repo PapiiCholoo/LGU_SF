@@ -8,7 +8,10 @@ import { TransformPage } from './components/TransformPage';
 import { InformPage } from './components/InformPage';
 import { ExplorePage } from './components/ExplorePage';
 
-type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
+import { ExecutiveAdmin } from './components/cms/ExecutiveAdmin';
+import { LegislativeAdmin } from './components/cms/LegislativeAdmin';
+
+type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -25,6 +28,10 @@ export default function App() {
         return <ServicesPage />;
       case 'inform':
         return <InformPage />;
+      case 'admin-executive':
+        return <ExecutiveAdmin />;
+      case 'admin-legislative':
+        return <LegislativeAdmin />;
       default:
         return <HomePage onNavigate={setCurrentPage} />;
     }
@@ -32,11 +39,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Header currentPage={currentPage} onNavigate={setCurrentPage as any} />
       <main className="flex-grow">
         {renderPage()}
       </main>
-      <Footer />
+      <Footer onNavigate={setCurrentPage as any} />
     </div>
   );
 }

@@ -3,4 +3,19 @@
 @theme {
   /* Restore custom variables */
   --color-beige: #F5F5DC;
+
+  /* LGU Brand Colors */
+  --color-brand-turquoise: #40E0D0;
+  /* Green/Turquoise */
+  --color-brand-aqua: #7FFFD4;
+  /* Blue/Aquamarine */
+  --color-brand-khaki: #F0E68C;
+  /* Bright Khaki/Yellow */
+  --color-brand-white: #FFFFFF;
+  /* Dominant White */
+
+  /* UI Semantic Colors */
+  --color-brand-primary: var(--color-brand-turquoise);
+  --color-brand-secondary: var(--color-brand-aqua);
+  --color-brand-accent: var(--color-brand-khaki);
 }

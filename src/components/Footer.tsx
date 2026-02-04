@@ -1,22 +1,26 @@
 import React from 'react';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate?: (page: any) => void;
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
-    <footer className="bg-gradient-to-r from-[#003366] to-[#004d7a] text-white mt-16">
+    <footer className="bg-slate-900 text-white mt-16 border-t-8 border-[var(--color-brand-turquoise)]">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <h3 className="text-lg font-bold mb-4 text-[#FFD700]">
+            <h3 className="text-lg font-bold mb-4 text-[var(--color-brand-khaki)]">
               Republic of the Philippines
             </h3>
             <p className="text-sm text-gray-300 leading-relaxed">
               Official website of the Local Government Unit of San Fernando, Camarines Sur.
               Committed to transparent governance and excellent public service.
             </p>
-            <p className="text-sm font-semibold text-[#00CED1] mt-4 italic">
+            <p className="text-sm font-semibold text-[var(--color-brand-aqua)] mt-4 italic">
               KUSOG San Fernando
             </p>
           </div>
@@ -55,6 +59,32 @@ export function Footer() {
             </ul>
           </div>
 
+
+          {/* Internal Systems (CMS) */}
+          <div>
+            <h3 className="text-lg font-bold mb-4 text-[var(--color-brand-khaki)]">
+              Internal Systems
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <button
+                  onClick={() => onNavigate?.('admin-executive')}
+                  className="text-gray-300 hover:text-[var(--color-brand-aqua)] transition-colors text-left"
+                >
+                  Executive Portal (CMS)
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate?.('admin-legislative')}
+                  className="text-gray-300 hover:text-[var(--color-brand-aqua)] transition-colors text-left"
+                >
+                  Legislative Portal (CMS)
+                </button>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact Information */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-[#FFD700]">
@@ -88,6 +118,7 @@ export function Footer() {
         </div>
       </div>
 
+
       {/* Bottom Bar */}
       <div className="bg-[#002244] py-4">
         <div className="container mx-auto px-4">
@@ -109,7 +140,7 @@ export function Footer() {
             Republic of the Philippines
           </p>
         </div>
-      </div>      
+      </div>
     </footer>
   );
 }
