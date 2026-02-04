@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import pool from './config/database';
 import apiRoutes from './routes/api';
+import { errorHandler } from './middlewares/error';
 
 dotenv.config();
 
@@ -39,10 +40,7 @@ app.use((req: Request, res: Response) => {
   res.status(404).json({ status: 'error', message: 'Route not found' });
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err);
-  res.status(500).json({ status: 'error', message: 'Internal server error', error: err.message });
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
