@@ -1,5 +1,5 @@
 {
-      "name": "LGU San Fernando Website Design",
+      "name": "lgu-san-fernando-website-design",
       "version": "0.1.0",
       "private": true,
       "dependencies": {
@@ -43,13 +43,16 @@
             "react-resizable-panels": "^2.1.7",
             "recharts": "^2.15.2",
             "sonner": "^2.0.3",
+            "tailwind": "^4.0.0",
             "tailwind-merge": "*",
             "vaul": "^1.1.2"
       },
       "devDependencies": {
+            "@tailwindcss/vite": "^4.1.18",
             "@types/node": "^20.10.0",
             "@types/react": "^19.2.9",
             "@vitejs/plugin-react-swc": "^3.10.2",
+            "tailwindcss": "^4.1.18",
             "vite": "6.3.5"
       },
       "scripts": {

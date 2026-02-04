@@ -27,26 +27,26 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#00CED1] to-[#003366] text-white shadow-lg sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white sticky top-0 z-50">
 
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
-      
+
           <div className="flex items-center gap-4">
             <div>
               <img
                 src={LogoImage}
-                alt="Municipality Logo" 
+                alt="Municipality Logo"
                 className="h-20 w-30 object-contain"
               />
             </div>
             <div className="hidden md:block">
-              <h1 className="text-xl font-bold leading-tight drop-shadow-md">
+              <h1 className="text-xl font-bold leading-tight">
                 Official Website of the Municipality of
               </h1>
-              <p className="text-lg text-[#FFD700] drop-shadow-md">
+              <p className="text-lg text-[#ded186]">
                 San Fernando, Camarines Sur
               </p>
               <p className="text-sm font-semibold text-white/90 italic mt-1">
@@ -57,7 +57,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <h1 className="font-bold leading-tight">
                 LGU San Fernando
               </h1>
-              <p className="text-sm text-[#FFD700]">
+              <p className="text-sm text-[#ded186]">
                 Camarines Sur
               </p>
               <p className="text-xs italic">KUSOG San Fernando</p>
@@ -70,45 +70,17 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                  currentPage === item.id
-                    ? 'bg-[#FFD700] text-[#003366] font-semibold shadow-md'
-                    : 'hover:bg-white/20 text-white'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-all duration-200 
+                  ${currentPage === item.id
+                    ? 'bg-[#ded186] text-[#003366] font-semibold'
+                    : 'hover:bg-[#ded186]/20 text-white'
+                  }`}
               >
                 {item.label}
               </button>
             ))}
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 hover:bg-white/20 rounded"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-2 flex flex-col gap-2">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-3 rounded-lg text-left transition-all duration-200 ${
-                  currentPage === item.id
-                    ? 'bg-[#FFD700] text-[#003366] font-semibold'
-                    : 'hover:bg-white/20 text-white'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-        )}
       </div>
     </header>
   );
