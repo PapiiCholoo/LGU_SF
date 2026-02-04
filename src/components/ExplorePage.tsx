@@ -95,6 +95,10 @@ const barangays = [
   'Pamukid', 'Pinamasagan', 'Pipian', 'Planza', 'Rizal', 
   'San Joaquin', 'Santa Cruz', 'Tagpocol'
 ];
+<<<<<<< HEAD
+
+=======
+>>>>>>> d523490cca4b784ccb17095174a89433360e3ec1
   return (
     <div>
       {/* Hero Section */}

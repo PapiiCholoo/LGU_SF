@@ -68,7 +68,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           <nav className="hidden lg:flex gap-2">
             {navItems.map((item) => (
               <button
-                key={item.id}
+                key={item.id} 
                 onClick={() => handleNavClick(item.id)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 
                   ${currentPage === item.id
