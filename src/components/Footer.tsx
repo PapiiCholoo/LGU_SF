@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 interface FooterProps {
@@ -104,7 +104,7 @@ export function Footer({ onNavigate }: FooterProps) {
               </div>
               <div className="flex gap-3 items-center">
                 <Mail className="flex-shrink-0 text-[#00CED1]" size={16} />
-                <p>lgu.sanfernando@gov.ph</p>
+                <p>officeofthemayor@sanfernandocamsur.gov.ph</p>
               </div>
               <div className="flex gap-3">
                 <Clock className="flex-shrink-0 mt-1 text-[#00CED1]" size={16} />

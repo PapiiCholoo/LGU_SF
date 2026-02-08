@@ -224,7 +224,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <img 
             src={fiestaImage} 
             alt="Happy Fiesta - Brgy. Pinamasagan" 
-            className="w-full h-[400px] md:h-[500px] object-contain"
+            className="w-full h-[400px] md:h-[500px] object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
             <div className="container mx-auto px-8 py-12 h-full flex flex-col justify-center max-w-2xl">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Menu, X } from 'lucide-react';
 import LogoImage from '../assets/logo.png';
 
 type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative';

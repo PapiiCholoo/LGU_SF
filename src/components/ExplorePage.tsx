@@ -1,11 +1,11 @@
-import React from 'react';
+
 import beachImage from '../assets/sfbeach.jpg';
 import mountainImage from '../assets/isarog.jpg';
 import heritageImage from '../assets/heritage.jpg';
 import fiesta from '../assets/fiesta2.jpg';
-import { 
-  MapPin, 
-  Palmtree, 
+import {
+  MapPin,
+  Palmtree,
   Camera,
   Heart,
   Mountain,
@@ -88,13 +88,13 @@ export function ExplorePage() {
     }
   ];
 
-const barangays = [
-  'Alianza', 'Beberon', 'Bical', 'Bocal', 'Bonifacio', 
-  'Buenavista', 'Calascagas', 'Cotmo', 'Daculang Tubig', 
-  'Del Pilar', 'Gñaran', 'Grijalvo', 'Lupi', 'Maragñi', 
-  'Pamukid', 'Pinamasagan', 'Pipian', 'Planza', 'Rizal', 
-  'San Joaquin', 'Santa Cruz', 'Tagpocol'
-];
+  const barangays = [
+    'Alianza', 'Beberon', 'Bical', 'Bocal', 'Bonifacio',
+    'Buenavista', 'Calascagas', 'Cotmo', 'Daculang Tubig',
+    'Del Pilar', 'Gñaran', 'Grijalvo', 'Lupi', 'Maragñi',
+    'Pamukid', 'Pinamasagan', 'Pipian', 'Planza', 'Rizal',
+    'San Joaquin', 'Santa Cruz', 'Tagpocol'
+  ];
 
   return (
     <div>
@@ -152,17 +152,17 @@ const barangays = [
             </h2>
             <div className="space-y-4 text-lg text-gray-700 leading-relaxed text-left">
               <p>
-                San Fernando is a first-class municipality in the province of Camarines Sur, Philippines. Located in the Bicol Region, 
+                San Fernando is a first-class municipality in the province of Camarines Sur, Philippines. Located in the Bicol Region,
                 our municipality is known for its rich agricultural lands, beautiful coastal areas, and warm, hospitable people.
               </p>
               <p>
-                With a history dating back to 1583, San Fernando has evolved into a progressive municipality while maintaining its 
-                cultural heritage and traditions. The town is strategically located near Mount Isarog, offering stunning natural 
+                With a history dating back to 1583, San Fernando has evolved into a progressive municipality while maintaining its
+                cultural heritage and traditions. The town is strategically located near Mount Isarog, offering stunning natural
                 landscapes and opportunities for eco-tourism.
               </p>
               <p>
-                Our 22 barangays work together under the leadership of the local government to provide excellent services and create 
-                opportunities for all residents. San Fernando is committed to sustainable development, environmental protection, and 
+                Our 22 barangays work together under the leadership of the local government to provide excellent services and create
+                opportunities for all residents. San Fernando is committed to sustainable development, environmental protection, and
                 improving the quality of life for all its citizens.
               </p>
             </div>
@@ -202,7 +202,7 @@ const barangays = [
         </div>
       </section>
 
-     {/* Tourist Attractions */}
+      {/* Tourist Attractions */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
