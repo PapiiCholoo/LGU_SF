@@ -31,8 +31,8 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo and Title */}
 
+          {/* Logo and Title */}
           <div className="flex items-center gap-4">
             <div>
               <img
@@ -71,7 +71,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 onClick={() => handleNavClick(item.id)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium
                   ${currentPage === item.id
-                    ? 'bg-[var(--color-brand-turquoise)] text-slate-900 font-bold'
+                    ? 'bg-[var(--color-brand-khaki)] text-slate-900 font-bold'
                     : 'text-gray-300 hover:text-[var(--color-brand-khaki)] hover:bg-white/5'
                   }`}
               >
