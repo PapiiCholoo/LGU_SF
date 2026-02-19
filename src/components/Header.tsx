@@ -56,7 +56,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <p className="text-sm font-bold text-[var(--color-brand-khaki)]">
                 Camarines Sur
               </p>
-              <p className="text-xs font-semibold text-[var(--color-brand-aqua)] italic">KUSOG San Fernando</p>
+
             </div>
           </div>
 
