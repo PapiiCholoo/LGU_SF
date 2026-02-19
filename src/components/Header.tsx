@@ -48,9 +48,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <p className="text-lg font-bold text-[var(--color-brand-khaki)]">
                 San Fernando, Camarines Sur
               </p>
-              <p className="text-sm font-semibold text-[var(--color-brand-aqua)] italic mt-1">
-                KUSOG San Fernando
-              </p>
             </div>
             <div className="md:hidden">
               <h1 className="font-bold leading-tight text-white">
