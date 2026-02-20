@@ -32,15 +32,20 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       {/* Main Header */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-
           {/* Logo and Title */}
+<<<<<<< HEAD
           <div className="flex items-center gap-2">
+=======
+
+          <div className="flex items-center gap-4">
+>>>>>>> b605fd5a5e1f02f4c9bb6c1939ae81d249cb0186
             <div>
               <img
                 src={LogoImage}
                 className="h-12 w-auto md:h-16 lg:h-20 object-contain"
               />
             </div>
+<<<<<<< HEAD
 
             {/* Desktop Title */}
             <div className="hidden md:block">
@@ -54,6 +59,23 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <h1 className="font-bold leading-tight text-white text-base drop-shadow-sm">
                 Municipality of San Fernando, Camarines Sur
               </h1>
+=======
+            <div className="hidden md:block">
+              <h1 className="text-xl font-bold leading-tight text-white">
+                Official Website of the Municipality of
+              </h1>
+              <p className="text-lg font-bold text-[var(--color-brand-khaki)]">
+                San Fernando, Camarines Sur
+              </p>
+            </div>
+            <div className="md:hidden">
+              <h1 className="font-bold leading-tight text-white">
+                LGU San Fernando
+              </h1>
+              <p className="text-sm font-bold text-[var(--color-brand-khaki)]">
+                Camarines Sur
+              </p>
+>>>>>>> b605fd5a5e1f02f4c9bb6c1939ae81d249cb0186
             </div>
           </div>
 
@@ -65,7 +87,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 onClick={() => handleNavClick(item.id)}
                 className={`px-4 py-2 rounded-lg transition-all duration-200 font-medium
                   ${currentPage === item.id
-                    ? 'bg-[var(--color-brand-khaki)] text-slate-900 font-bold'
+                    ? 'bg-[var(--color-brand-turquoise)] text-slate-900 font-bold'
                     : 'text-gray-300 hover:text-[var(--color-brand-khaki)] hover:bg-white/5'
                   }`}
               >
