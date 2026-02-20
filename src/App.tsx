@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './components/HomePage';
 import { ServicesPage } from './components/ServicesPage';
-import { AboutPage } from './components/AboutPage';
+
 import { TransformPage } from './components/TransformPage';
 import { InformPage } from './components/InformPage';
 import { ExplorePage } from './components/ExplorePage';
@@ -15,11 +15,24 @@ type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-execu
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [displayPage, setDisplayPage] = useState<Page>('home');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleNavigate = (page: Page) => {
+    if (page === currentPage) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setDisplayPage(page);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      setIsTransitioning(false);
+    }, 300);
+  };
 
   const renderPage = () => {
-    switch (currentPage) {
+    switch (displayPage) {
       case 'home':
-        return <HomePage onNavigate={setCurrentPage} />;
+        return <HomePage onNavigate={handleNavigate} />;
       case 'transform':
         return <TransformPage />;
       case 'explore':
@@ -33,17 +46,22 @@ export default function App() {
       case 'admin-legislative':
         return <LegislativeAdmin />;
       default:
-        return <HomePage onNavigate={setCurrentPage} />;
+        return <HomePage onNavigate={handleNavigate} />;
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Header currentPage={currentPage} onNavigate={setCurrentPage as any} />
-      <main className="flex-grow">
-        {renderPage()}
+      <Header currentPage={currentPage} onNavigate={handleNavigate as any} />
+      <main className="flex-grow relative overflow-hidden">
+        <div
+          className={`transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
+            }`}
+        >
+          {renderPage()}
+        </div>
       </main>
-      <Footer onNavigate={setCurrentPage as any} />
+      <Footer onNavigate={handleNavigate as any} />
     </div>
   );
 }

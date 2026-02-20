@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   Sparkles,
-  MapPin,
   HandHeart,
   Megaphone,
   ArrowRight,
@@ -26,6 +25,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "./ui/carousel";
 import isarog from '../assets/isarog.jpg';
 import sfbeach from '../assets/sfbeach.jpg';
@@ -40,12 +41,15 @@ interface HomePageProps {
 
 
 export function HomePage({ onNavigate }: HomePageProps) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
-    // Scroll listener removed as offsetY wasn't used natively in the component output
-  }, []);
-
-
-  const [api, setApi] = useState<any>();
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []); const [api, setApi] = useState<any>();
 
   useEffect(() => {
     if (!api) {
@@ -69,10 +73,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
   return (
 
     <div>
-      <section className="relative text-white overflow-hidden min-h-[90dvh] lg:h-[120vh]">
+      <section
+        className={`relative text-white overflow-hidden transition-all duration-700 ease-in-out origin-top ${isScrolled ? 'h-0 opacity-0 pointer-events-none -translate-y-10' : 'h-[65dvh] lg:h-[85vh] opacity-100 translate-y-0'
+          }`}
+      >
 
         {/* Image Slider Background */}
-        <div className="absolute inset-0 select-none">
+        <div className="absolute inset-0 select-none group">
           <Carousel
             setApi={setApi}
             opts={{
@@ -81,7 +88,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             }}
             className="w-full h-full"
           >
-            <CarouselContent className="h-[90dvh] lg:h-[120vh] -ml-0">
+            <CarouselContent className="h-[65dvh] lg:h-[85vh] -ml-0">
               {heroImages.map((img, index) => (
                 <CarouselItem key={index} className="pl-0 h-full w-full border-none">
                   <div
@@ -93,6 +100,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </CarouselItem>
               ))}
             </CarouselContent>
+
+            <CarouselPrevious className="left-4 lg:left-8 bg-black/20 hover:bg-black/40 border-white/30 text-white backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100" />
+            <CarouselNext className="right-4 lg:right-8 bg-black/20 hover:bg-black/40 border-white/30 text-white backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100" />
           </Carousel>
         </div>
 
@@ -102,7 +112,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
 
         {/* Brand color atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/30 via-[#20B2AA]/25 to-[#FFD700]/20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/10 via-[#20B2AA]/10 to-[#FFD700]/10 pointer-events-none"></div>
 
 
 
@@ -118,52 +128,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
           ></div>
         </div>
 
-        {/* Content */}
-        <div className="relative container mx-auto px-4 py-16 md:py-32 z-10 flex flex-col justify-center min-h-[90dvh] lg:min-h-0">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-6">
-              <div className="inline-block bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
-                <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
-                  KUSOG San Fernando
-                </p>
-              </div>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
-              Strength. Resilience. Unity. Progress.
-            </h2>
-
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white/95 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
-              Official Website of the Municipality of San Fernando, Camarines Sur
-            </p>
-
-            <p className="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-white/90 max-w-2xl mx-auto drop-shadow-sm">
-              Building a stronger community through transparent governance, innovation, and dedicated public service.
-            </p>
-
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
-              <button
-                onClick={() => onNavigate('serve')}
-                className="bg-[#FFD700] text-[#003366] px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold hover:bg-[#F0E68C] transition-all shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 text-base md:text-lg border-2 border-white/30 w-full sm:w-auto"
-              >
-                Explore Services
-                <ArrowRight size={20} className="md:w-6 md:h-6" />
-              </button>
-
-              <button
-                onClick={() => onNavigate('explore')}
-                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold hover:bg-white/30 transition-all shadow-xl inline-flex items-center justify-center gap-2 text-base md:text-lg w-full sm:w-auto"
-              >
-                Discover San Fernando
-                <MapPin size={20} className="md:w-6 md:h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* Decorative wave */}
-        <div className="absolute bottom-0 left-0 right-0 z-20">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+        <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none translate-y-[1px]">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
             <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="white" />
           </svg>
         </div>
@@ -267,7 +234,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
                 FEATURED EVENT
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
                 Happy Fiesta!
               </h2>
               <p className="text-xl md:text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
@@ -299,7 +266,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Newspaper className="text-[#00CED1]" size={32} />
               <div className="w-12 h-1 bg-gradient-to-l from-transparent to-[#00CED1]"></div>
             </div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black ">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-black ">
               Latest Updates & Announcements
             </h2>
             <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
@@ -384,7 +351,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* KUSOG Values Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black ">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-black ">
             KUSOG San Fernando Values
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
@@ -447,7 +414,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white">
               Quick Access to Services
             </h2>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
@@ -495,7 +462,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 space-y-10">
           <div className="text-center">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black">Connected Services</h2>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-black">Connected Services</h2>
 
             <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.

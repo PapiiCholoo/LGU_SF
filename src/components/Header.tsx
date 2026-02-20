@@ -30,7 +30,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     <header className="bg-gradient-to-r from-slate-900 to-slate-800 text-white sticky top-0 z-50 border-b-4 border-[var(--color-brand-turquoise)]">
 
       {/* Main Header */}
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-2 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
 
@@ -38,7 +38,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <div>
               <img
                 src={LogoImage}
-                className="h-12 w-auto md:h-16 lg:h-20 object-contain"
+                className="h-10 w-auto md:h-16 lg:h-20 object-contain"
               />
             </div>
             <div className="hidden md:block">
@@ -50,10 +50,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               </p>
             </div>
             <div className="md:hidden">
-              <h1 className="font-bold leading-tight text-white">
+              <h1 className="text-sm font-bold leading-tight text-white">
                 LGU San Fernando
               </h1>
-              <p className="text-sm font-bold text-[var(--color-brand-khaki)]">
+              <p className="text-xs font-bold text-[var(--color-brand-khaki)]">
                 Camarines Sur
               </p>
             </div>
@@ -90,12 +90,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-slate-900 border-t border-slate-800 animate-in slide-in-from-top-2 absolute w-full left-0 shadow-2xl z-40">
-          <nav className="flex flex-col p-4 space-y-2 max-h-[80vh] overflow-y-auto">
+          <nav className="flex flex-col p-3 space-y-1 max-h-[80vh] overflow-y-auto">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-4 py-3 rounded-lg text-left transition-all duration-200 font-medium
+                className={`px-4 py-2 text-sm rounded-lg text-left transition-all duration-200 font-medium
                   ${currentPage === item.id
                     ? 'bg-[var(--color-brand-khaki)] text-slate-900 font-bold'
                     : 'text-gray-300 hover:text-[var(--color-brand-khaki)] hover:bg-white/5'
