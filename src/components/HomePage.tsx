@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { 
+import {
   Sparkles,
   MapPin,
   HandHeart,
@@ -15,7 +15,6 @@ import {
   FileText,
   GraduationCap,
   Palmtree,
-  Camera,
   Newspaper,
   Lightbulb
 } from 'lucide-react';
@@ -23,112 +22,149 @@ import fiestaImage from '../assets/fiesta.png';
 import heroBg from '../assets/hero_bg.jpg';
 import { BackendStatus } from './backend/BackendStatus';
 import { UserDirectory } from './backend/UserDirectory';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "./ui/carousel";
+import isarog from '../assets/isarog.jpg';
+import sfbeach from '../assets/sfbeach.jpg';
+import fiesta2 from '../assets/fiesta2.jpg';
 
 type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
 interface HomePageProps {
   onNavigate: (page: Page) => void;
-  
+
 }
 
 
 export function HomePage({ onNavigate }: HomePageProps) {
-  const [offsetY, setOffsetY] = useState(0);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setOffsetY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Scroll listener removed as offsetY wasn't used natively in the component output
   }, []);
 
 
+  const [api, setApi] = useState<any>();
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [api]);
+
+  const heroImages = [
+    heroBg,
+    isarog,
+    sfbeach,
+    fiesta2
+  ];
+
   return (
-    
-<div>
-  <section className="relative text-white overflow-hidden h-[120vh]">
-    
-    {/* Parallax Background */}
-    <div
-      className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 will-change-transform"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-        transform: `translateY(${offsetY * 0.4}px)`
-      }}
-    />
 
-    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+    <div>
+      <section className="relative text-white overflow-hidden min-h-[90dvh] lg:h-[120vh]">
+
+        {/* Image Slider Background */}
+        <div className="absolute inset-0 select-none">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+            className="w-full h-full"
+          >
+            <CarouselContent className="h-[90dvh] lg:h-[120vh] -ml-0">
+              {heroImages.map((img, index) => (
+                <CarouselItem key={index} className="pl-0 h-full w-full border-none">
+                  <div
+                    className="w-full h-full bg-cover bg-center md:bg-top"
+                    style={{
+                      backgroundImage: `url(${img})`,
+                    }}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
 
 
-    {/* Dark blur for readability */}
-    <div className="absolute inset-0 bg-black/60 backdrop-blur-md -z-10"></div>
-
-    {/* Brand color atmosphere */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/30 via-[#20B2AA]/25 to-[#FFD700]/20"></div>
 
 
 
 
-    {/* Pattern Overlay (your dotted texture) */} 
-    <div className="absolute inset-0 opacity-10">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }}
-      ></div>
-    </div>
+        {/* Brand color atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/30 via-[#20B2AA]/25 to-[#FFD700]/20 pointer-events-none"></div>
 
-    {/* Content */}
-    <div className="relative container mx-auto px-4 py-20 md:py-32">
-      <div className="text-center max-w-4xl mx-auto">
-        <div className="mb-6">
-          <div className="inline-block bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
-            <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
-              KUSOG San Fernando
+
+
+
+        {/* Pattern Overlay (your dotted texture) */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '40px 40px'
+            }}
+          ></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative container mx-auto px-4 py-16 md:py-32 z-10 flex flex-col justify-center min-h-[90dvh] lg:min-h-0">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="mb-6">
+              <div className="inline-block bg-white/10 backdrop-blur-md px-6 py-2 rounded-full border border-white/30 shadow-lg">
+                <p className="text-sm md:text-base font-semibold italic text-white drop-shadow-lg">
+                  KUSOG San Fernando
+                </p>
+              </div>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
+              Strength. Resilience. Unity. Progress.
+            </h2>
+
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white/95 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
+              Official Website of the Municipality of San Fernando, Camarines Sur
             </p>
+
+            <p className="text-base sm:text-lg md:text-xl mb-8 md:mb-10 text-white/90 max-w-2xl mx-auto drop-shadow-sm">
+              Building a stronger community through transparent governance, innovation, and dedicated public service.
+            </p>
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">
+              <button
+                onClick={() => onNavigate('serve')}
+                className="bg-[#FFD700] text-[#003366] px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold hover:bg-[#F0E68C] transition-all shadow-xl hover:shadow-2xl inline-flex items-center justify-center gap-2 text-base md:text-lg border-2 border-white/30 w-full sm:w-auto"
+              >
+                Explore Services
+                <ArrowRight size={20} className="md:w-6 md:h-6" />
+              </button>
+
+              <button
+                onClick={() => onNavigate('explore')}
+                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-6 py-3 md:px-8 md:py-4 rounded-xl font-bold hover:bg-white/30 transition-all shadow-xl inline-flex items-center justify-center gap-2 text-base md:text-lg w-full sm:w-auto"
+              >
+                Discover San Fernando
+                <MapPin size={20} className="md:w-6 md:h-6" />
+              </button>
+            </div>
           </div>
         </div>
 
-        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white ">
-          Strength. Resilience. Unity. Progress.
-        </h2>
-
-        <p className="text-xl md:text-2xl mb-8 text-white/95 drop-shadow-md leading-relaxed max-w-3xl mx-auto">
-          Official Website of the Municipality of San Fernando, Camarines Sur
-        </p>
-
-        <p className="text-lg md:text-xl mb-10 text-white/90 max-w-2xl mx-auto">
-          Building a stronger community through transparent governance, innovation, and dedicated public service.
-        </p>
-
-        <div className="flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={() => onNavigate('serve')}
-            className="bg-[#FFD700] text-[#003366] px-8 py-4 rounded-xl font-bold hover:bg-[#F0E68C] transition-all shadow-xl hover:shadow-2xl inline-flex items-center gap-2 text-lg border-2 border-white/30"
-          >
-            Explore Services
-            <ArrowRight size={24} />
-          </button>
-
-          <button
-            onClick={() => onNavigate('explore')}
-            className="bg-white/20 backdrop-blur-sm text-white border-2 border-white px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition-all shadow-xl inline-flex items-center gap-2 text-lg"
-          >
-            Discover San Fernando
-            <MapPin size={24} />
-          </button>
-        </div>
-      </div>
-    </div>
-
         {/* Decorative wave */}
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 z-20">
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="white"/>
+            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="white" />
           </svg>
         </div>
       </section>
@@ -221,9 +257,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Featured Event - Fiesta Banner */}
       <section className="container mx-auto px-4 py-12">
         <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-          <img 
-            src={fiestaImage} 
-            alt="Happy Fiesta - Brgy. Pinamasagan" 
+          <img
+            src={fiestaImage}
+            alt="Happy Fiesta - Brgy. Pinamasagan"
             className="w-full h-[400px] md:h-[500px] object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
@@ -231,10 +267,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
                 FEATURED EVENT
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
                 Happy Fiesta!
               </h2>
-              <p className="text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
+              <p className="text-xl md:text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
                 Brgy. Pinamasagan
               </p>
               <p className="text-xl text-white mb-6 drop-shadow-lg">
@@ -263,10 +299,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Newspaper className="text-[#00CED1]" size={32} />
               <div className="w-12 h-1 bg-gradient-to-l from-transparent to-[#00CED1]"></div>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black ">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black ">
               Latest Updates & Announcements
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
               Stay informed with the latest news and developments from San Fernando
             </p>
           </div>
@@ -348,10 +384,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* KUSOG Values Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black ">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black ">
             KUSOG San Fernando Values
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Building our community on the foundations of strength, resilience, unity, and progress
           </p>
         </div>
@@ -411,10 +447,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white">
               Quick Access to Services
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
               Essential municipal services at your fingertips
             </p>
           </div>
@@ -459,9 +495,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 space-y-10">
           <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">Connected Services</h2>
-            
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-black">Connected Services</h2>
+
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
               These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.
             </p>
             <br></br>

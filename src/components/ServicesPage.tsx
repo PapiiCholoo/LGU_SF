@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  FileText, 
-  Briefcase, 
-  Building2, 
-  Users, 
-  Heart, 
+import {
+  FileText,
+  Briefcase,
+  Building2,
+  Heart,
   GraduationCap,
   Scale,
   Home,
@@ -266,7 +265,7 @@ export function ServicesPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-3 mb-6">
               <HandHeart className="text-[#FFD700]" size={48} />
-              <h1 className="text-5xl md:text-6xl font-bold drop-shadow-lg">Serve</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg">Serve</h1>
             </div>
             <p className="text-2xl mb-6 text-white/95 drop-shadow-md">
               Dedicated to Serving the People of San Fernando
@@ -283,13 +282,12 @@ export function ServicesPage() {
         {categories.map((category, catIndex) => (
           <div key={category} className="mb-12">
             <div className="flex items-center gap-4 mb-6">
-              <div className={`w-12 h-1 bg-gradient-to-r ${
-                catIndex % 4 === 0 ? 'from-[#FFD700] to-[#F0E68C]' :
+              <div className={`w-12 h-1 bg-gradient-to-r ${catIndex % 4 === 0 ? 'from-[#FFD700] to-[#F0E68C]' :
                 catIndex % 4 === 1 ? 'from-[#00CED1] to-[#20B2AA]' :
-                catIndex % 4 === 2 ? 'from-[#003366] to-[#004d7a]' :
-                'from-[#17a2b8] to-[#00CED1]'
-              }`}></div>
-              <h2 className="text-3xl font-bold text-[#003366]">
+                  catIndex % 4 === 2 ? 'from-[#003366] to-[#004d7a]' :
+                    'from-[#17a2b8] to-[#00CED1]'
+                }`}></div>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#003366]">
                 {category}
               </h2>
             </div>
@@ -299,8 +297,8 @@ export function ServicesPage() {
                 .map((service, idx) => {
                   const colorClass = idx % 4 === 0 ? 'from-[#FFD700] to-[#F0E68C]' :
                     idx % 4 === 1 ? 'from-[#00CED1] to-[#20B2AA]' :
-                    idx % 4 === 2 ? 'from-[#003366] to-[#004d7a]' :
-                    'from-[#17a2b8] to-[#00CED1]';
+                      idx % 4 === 2 ? 'from-[#003366] to-[#004d7a]' :
+                        'from-[#17a2b8] to-[#00CED1]';
                   return (
                     <div
                       key={service.id}
@@ -310,7 +308,7 @@ export function ServicesPage() {
                         <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 shadow-md">
                           <service.icon className="text-[#003366]" size={28} />
                         </div>
-                        <h3 className="font-bold text-white mb-2 text-xl drop-shadow-md">
+                        <h3 className="font-bold text-white mb-2 text-lg md:text-xl drop-shadow-md">
                           {service.title}
                         </h3>
                       </div>
@@ -348,7 +346,7 @@ export function ServicesPage() {
                     <selectedService.icon className="text-[#003366]" size={32} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold drop-shadow-md">{selectedService.title}</h3>
+                    <h3 className="text-xl md:text-2xl font-bold drop-shadow-md">{selectedService.title}</h3>
                     <p className="text-[#FFD700] font-semibold">{selectedService.category}</p>
                   </div>
                 </div>
@@ -404,11 +402,11 @@ export function ServicesPage() {
       {/*Apply Now Section */}
       {applyService && (
         <div>
-          
+
         </div>
       )}
 
-      </div>
-        
+    </div>
+
   );
 }

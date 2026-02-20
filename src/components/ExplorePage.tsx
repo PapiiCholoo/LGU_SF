@@ -10,10 +10,8 @@ import {
   Heart,
   Mountain,
   Waves,
-  Sun,
   Users,
   Phone,
-  Mail,
   Clock,
   Building2,
   Award,
@@ -110,7 +108,7 @@ export function ExplorePage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-3 mb-6">
               <Palmtree className="text-white" size={48} />
-              <h1 className="text-5xl md:text-6xl font-bold drop-shadow-lg">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg">
                 Explore
               </h1>
             </div>
@@ -147,7 +145,7 @@ export function ExplorePage() {
       <section className="bg-gradient-to-b from-gray-50 to-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#003366] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-6">
               About San Fernando, Camarines Sur
             </h2>
             <div className="space-y-4 text-lg text-gray-700 leading-relaxed text-left">
@@ -207,7 +205,7 @@ export function ExplorePage() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
             <Camera className="text-[#00CED1]" size={32} />
-            <h2 className="text-4xl font-bold text-[#003366]">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#003366]">
               Discover San Fernando
             </h2>
           </div>
@@ -244,7 +242,7 @@ export function ExplorePage() {
                   >
                     <attraction.icon className="text-white" size={24} />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#003366]">
+                  <h3 className="text-xl md:text-2xl font-bold text-[#003366]">
                     {attraction.name}
                   </h3>
                 </div>
@@ -261,7 +259,7 @@ export function ExplorePage() {
       <section className="bg-gradient-to-br from-[#FFD700] via-[#F0E68C] to-[#FFD700] py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#003366] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
               Our 22 Barangays
             </h2>
             <p className="text-lg text-[#003366]/80 max-w-2xl mx-auto">
@@ -287,7 +285,7 @@ export function ExplorePage() {
       <section id="contact-section" className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#003366] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
               Visit San Fernando
             </h2>
             <p className="text-xl text-gray-600">

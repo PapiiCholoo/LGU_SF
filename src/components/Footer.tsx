@@ -9,8 +9,8 @@ export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-slate-900 text-white mt-16 border-t-8 border-[var(--color-brand-turquoise)]">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-[var(--color-brand-khaki)]">
@@ -122,7 +122,7 @@ export function Footer({ onNavigate }: FooterProps) {
       {/* Bottom Bar */}
       <div className="bg-[#002244] py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-gray-400">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-2 text-sm text-gray-400 text-center lg:text-left">
             <p>
               © 2026 Local Government Unit of San Fernando, Camarines Sur. All rights reserved.
             </p>

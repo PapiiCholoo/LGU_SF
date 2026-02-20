@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  Megaphone, 
-  Calendar, 
+import {
+  Megaphone,
+  Calendar,
   AlertCircle,
   Newspaper,
-  Camera,
   Filter,
-  Heart,
+  Trophy,
   Briefcase,
   Building2,
   Users,
-  Trophy,
-  Lightbulb
+  Lightbulb,
+  Heart
 } from 'lucide-react';
 
 import fiestaImage from '../assets/fiesta.png';
@@ -145,8 +144,8 @@ export function InformPage() {
     }
   ];
 
-  const filteredAnnouncements = selectedCategory === 'all' 
-    ? announcements 
+  const filteredAnnouncements = selectedCategory === 'all'
+    ? announcements
     : announcements.filter(a => a.category === selectedCategory);
 
   const featuredAnnouncement = announcements.find(a => a.priority === 'featured');
@@ -208,8 +207,8 @@ export function InformPage() {
                 </div>
               </div>
               <div className="relative h-[400px] lg:h-auto">
-                <img 
-                  src={featuredAnnouncement.image} 
+                <img
+                  src={featuredAnnouncement.image}
                   alt={featuredAnnouncement.title}
                   className="w-full h-full object-contain"
                 />
@@ -228,11 +227,10 @@ export function InformPage() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white shadow-lg'
-                    : 'bg-white text-[#003366] hover:bg-gray-100 border-2 border-gray-200'
-                }`}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all ${selectedCategory === category.id
+                  ? 'bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white shadow-lg'
+                  : 'bg-white text-[#003366] hover:bg-gray-100 border-2 border-gray-200'
+                  }`}
               >
                 <category.icon size={18} />
                 {category.label}

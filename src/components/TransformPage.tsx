@@ -1,16 +1,14 @@
 import React from 'react';
-import { 
-  Lightbulb, 
-  TrendingUp, 
-  Wrench, 
+import {
+  Lightbulb,
   Users,
-  Building2,
   Leaf,
   Heart,
   GraduationCap,
-  ArrowRight,
   Calendar,
-  CheckCircle
+  CheckCircle,
+  TrendingUp,
+  ArrowRight
 } from 'lucide-react';
 
 export function TransformPage() {
@@ -125,7 +123,7 @@ export function TransformPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-3 mb-6">
               <Lightbulb className="text-[#003366]" size={48} />
-              <h1 className="text-5xl md:text-6xl font-bold">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
                 Transform
               </h1>
             </div>
@@ -156,11 +154,10 @@ export function TransformPage() {
               <div className={`bg-gradient-to-r ${project.color} p-6`}>
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <span className={`text-xs px-3 py-1 rounded-full font-bold ${
-                      project.status === 'Ongoing' ? 'bg-white/90 text-[#003366]' : 
-                      project.status === 'Active' ? 'bg-white/90 text-[#00CED1]' : 
-                      'bg-white/70 text-[#003366]'
-                    }`}>
+                    <span className={`text-xs px-3 py-1 rounded-full font-bold ${project.status === 'Ongoing' ? 'bg-white/90 text-[#003366]' :
+                      project.status === 'Active' ? 'bg-white/90 text-[#00CED1]' :
+                        'bg-white/70 text-[#003366]'
+                      }`}>
                       {project.status}
                     </span>
                   </div>
@@ -168,7 +165,7 @@ export function TransformPage() {
                     {project.category}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                   {project.title}
                 </h3>
                 <div className="mt-4">
@@ -177,7 +174,7 @@ export function TransformPage() {
                     <span className="font-bold">{project.progress}%</span>
                   </div>
                   <div className="w-full bg-white/30 rounded-full h-3">
-                    <div 
+                    <div
                       className="bg-white rounded-full h-3 transition-all shadow-md"
                       style={{ width: `${project.progress}%` }}
                     ></div>
@@ -208,7 +205,7 @@ export function TransformPage() {
       <section className="bg-gradient-to-b from-gray-50 to-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-[#003366] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#003366] mb-4">
               Active Community Programs
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -219,7 +216,7 @@ export function TransformPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {programs.map((program, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
-                <div className={`${program.color} p-8 text-center`}>
+                <div className={`${program.color} p - 8 text - center`}>
                   <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
                     <program.icon className="text-[#003366]" size={40} />
                   </div>
@@ -282,7 +279,7 @@ export function TransformPage() {
       {/* Call to Action */}
       <section className="bg-gradient-to-r from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-lg">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg">
             Join Us in Building a Better San Fernando
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto drop-shadow-md">
