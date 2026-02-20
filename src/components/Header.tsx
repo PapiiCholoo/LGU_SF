@@ -33,33 +33,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
-<<<<<<< HEAD
-          <div className="flex items-center gap-2">
-=======
 
           <div className="flex items-center gap-4">
->>>>>>> b605fd5a5e1f02f4c9bb6c1939ae81d249cb0186
             <div>
               <img
                 src={LogoImage}
                 className="h-12 w-auto md:h-16 lg:h-20 object-contain"
               />
             </div>
-<<<<<<< HEAD
-
-            {/* Desktop Title */}
-            <div className="hidden md:block">
-              <h1 className="text-lg lg:text-xl font-bold leading-tight text-white drop-shadow-sm">
-                Municipality of San Fernando, Camarines Sur
-              </h1>
-            </div>
-
-            {/* Mobile Title */}
-            <div className="md:hidden">
-              <h1 className="font-bold leading-tight text-white text-base drop-shadow-sm">
-                Municipality of San Fernando, Camarines Sur
-              </h1>
-=======
             <div className="hidden md:block">
               <h1 className="text-xl font-bold leading-tight text-white">
                 Official Website of the Municipality of
@@ -75,7 +56,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <p className="text-sm font-bold text-[var(--color-brand-khaki)]">
                 Camarines Sur
               </p>
->>>>>>> b605fd5a5e1f02f4c9bb6c1939ae81d249cb0186
             </div>
           </div>
 
