@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   FileText,
   Briefcase,
@@ -28,6 +29,18 @@ interface Service {
 export function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [applyService, setApplyService] = useState<Service | null>(null);
+
+  useEffect(() => {
+    if (selectedService || applyService) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedService, applyService]);
 
   const services: Service[] = [
     // Civil Services
@@ -336,8 +349,8 @@ export function ServicesPage() {
       </div>
 
       {/* Service Detail Modal */}
-      {selectedService && (
-        <div className="fixed inset-0  backdrop-blur-sm bg-opacity-50 flex items-center justify-center p-4 z-50">
+      {selectedService && createPortal(
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="sticky top-0 bg-gradient-to-r from-[#003366] to-[#004d7a] text-white p-6 rounded-t-2xl">
               <div className="flex justify-between items-start">
@@ -387,7 +400,13 @@ export function ServicesPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white py-4 px-6 rounded-xl font-bold hover:shadow-xl transition-all">
+              <button
+                onClick={() => {
+                  setSelectedService(null);
+                  setApplyService(selectedService);
+                }}
+                className="w-full bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white py-4 px-6 rounded-xl font-bold hover:shadow-xl transition-all"
+              >
                 Apply for This Service
               </button>
 
@@ -396,17 +415,56 @@ export function ServicesPage() {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/*Apply Now Section */}
-      {applyService && (
-        <div>
+      {applyService && createPortal(
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-[#003366] to-[#004d7a] text-white p-6 rounded-t-2xl">
+              <div className="flex justify-between items-start">
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-[#FFD700] rounded-xl flex items-center justify-center shadow-lg">
+                    <applyService.icon className="text-[#003366]" size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold drop-shadow-md">Apply: {applyService.title}</h3>
+                    <p className="text-[#FFD700] font-semibold">{applyService.category}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setApplyService(null)}
+                  className="text-white hover:bg-white/20 rounded-lg p-2 transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+            </div>
 
-        </div>
+            <div className="p-6">
+              <div className="text-center py-12">
+                <div className="w-20 h-20 bg-[#00CED1]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FileText className="text-[#00CED1]" size={40} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#003366] mb-2">Application Form</h3>
+                <p className="text-gray-600 mb-8 max-w-md mx-auto">
+                  Please proceed to the Municipal Hall to formally submit your application and necessary requirements for this service.
+                </p>
+                <button
+                  onClick={() => setApplyService(null)}
+                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-xl transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
       )}
 
     </div>
-
   );
 }
