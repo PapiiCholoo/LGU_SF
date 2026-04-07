@@ -11,116 +11,26 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { HeroCarousel } from './HeroCarousel';
-import heroBg from '../assets/hero_bg.jpg';
-import isarog from '../assets/isarog.jpg';
+import { useContent } from '../contexts/ContentContext';
+
+const IconMap: Record<string, any> = {
+  Lightbulb, Users, Leaf, Heart, GraduationCap, Calendar, CheckCircle, TrendingUp, ArrowRight
+};
 
 export function TransformPage() {
-  const developmentProjects = [
-    {
-      id: 1,
-      title: 'Municipal Road Network Improvement',
-      category: 'Infrastructure',
-      status: 'Ongoing',
-      progress: 65,
-      description: 'Comprehensive road rehabilitation and expansion across 12 barangays to improve accessibility and transportation.',
-      budget: '₱45,000,000',
-      timeline: 'January 2026 - December 2026',
-      color: 'from-[#FFD700] to-[#F0E68C]'
-    },
-    {
-      id: 2,
-      title: 'Sustainable Agriculture Program',
-      category: 'Agriculture',
-      status: 'Active',
-      progress: 80,
-      description: 'Supporting local farmers with modern farming techniques, equipment subsidies, and market access programs.',
-      budget: '₱18,000,000',
-      timeline: 'October 2025 - September 2026',
-      color: 'from-[#00CED1] to-[#20B2AA]'
-    },
-    {
-      id: 3,
-      title: 'Digital Governance Initiative',
-      category: 'Technology',
-      status: 'Planning',
-      progress: 30,
-      description: 'Implementing online services and digital platforms for more efficient and transparent government operations.',
-      budget: '₱12,000,000',
-      timeline: 'March 2026 - March 2027',
-      color: 'from-[#003366] to-[#004d7a]'
-    },
-    {
-      id: 4,
-      title: 'Youth Skills Development Center',
-      category: 'Education',
-      status: 'Planning',
-      progress: 20,
-      description: 'Establishing a training center to provide youth with technical and vocational skills for employment.',
-      budget: '₱25,000,000',
-      timeline: 'June 2026 - June 2027',
-      color: 'from-[#17a2b8] to-[#00CED1]'
-    }
-  ];
-
-  const programs = [
-    {
-      icon: Heart,
-      title: 'Health for All Program',
-      description: 'Free medical consultations, medicines, and health screenings for all residents',
-      beneficiaries: '5,000+ residents',
-      color: 'bg-gradient-to-br from-[#FFD700] to-[#F0E68C]'
-    },
-    {
-      icon: GraduationCap,
-      title: 'Education Assistance',
-      description: 'Scholarship programs and educational support for deserving students',
-      beneficiaries: '800+ students',
-      color: 'bg-gradient-to-br from-[#00CED1] to-[#20B2AA]'
-    },
-    {
-      icon: Leaf,
-      title: 'Green San Fernando',
-      description: 'Environmental protection and tree planting initiatives across the municipality',
-      beneficiaries: '50,000+ trees planted',
-      color: 'bg-gradient-to-br from-[#003366] to-[#004d7a]'
-    },
-    {
-      icon: Users,
-      title: 'Livelihood Programs',
-      description: 'Skills training and business capital support for local entrepreneurs',
-      beneficiaries: '1,200+ families',
-      color: 'bg-gradient-to-br from-[#17a2b8] to-[#00CED1]'
-    }
-  ];
-
-  const updates = [
-    {
-      date: 'January 22, 2026',
-      title: 'New Municipal Gymnasium Construction Begins',
-      description: 'Groundbreaking ceremony held for the new multi-purpose sports facility that will serve the youth and sports programs.'
-    },
-    {
-      date: 'January 20, 2026',
-      title: 'Solar Street Lights Installation Complete',
-      description: 'All 15 barangays now have solar-powered street lights, enhancing safety and reducing energy costs.'
-    },
-    {
-      date: 'January 18, 2026',
-      title: 'Water System Upgrade Reaches 80% Completion',
-      description: 'The improved water distribution system will provide clean water access to 3,000 additional households.'
-    }
-  ];
+  const { content } = useContent();
+  const c = content.transform;
 
   return (
     <div>
       {/* Hero Section */}
       <HeroCarousel
         pageId="transform"
-        title="Transform"
-        subtitle="Building a Better San Fernando Through Innovation & Development"
-        description="Discover the programs, projects, and initiatives that are transforming our municipality into a progressive and sustainable community."
+        title={c.title}
+        subtitle={c.subtitle}
+        description={c.description}
         icon={Lightbulb}
-        defaultImages={[heroBg, isarog]}
+        defaultImages={c.heroImages || []}
       />
 
       {/* Development Projects */}
@@ -135,12 +45,13 @@ export function TransformPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {developmentProjects.map((project) => (
+          {c.developmentProjects?.map((project: any) => (
             <div key={project.id} className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all">
               <div className={`bg-gradient-to-r ${project.color} p-6`}>
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <span className={`text-xs px-3 py-1 rounded-full font-bold ${project.status === 'Ongoing' ? 'bg-white/90 text-[#003366]' :
+                    <span className={`text-xs px-3 py-1 rounded-full font-bold ${
+                      project.status === 'Ongoing' ? 'bg-white/90 text-[#003366]' :
                       project.status === 'Active' ? 'bg-white/90 text-[#00CED1]' :
                         'bg-white/70 text-[#003366]'
                       }`}>
@@ -200,26 +111,29 @@ export function TransformPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {programs.map((program, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
-                <div className={`${program.color} p - 8 text - center`}>
-                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                    <program.icon className="text-[#003366]" size={40} />
+            {c.programs?.map((program: any, index: number) => {
+              const IconComp = IconMap[program.iconType] || Heart;
+              return (
+                <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+                  <div className={`${program.color} p-8 text-center`}>
+                    <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                      <IconComp className="text-[#003366]" size={40} />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-bold text-[#003366] mb-3 text-xl text-center">
+                      {program.title}
+                    </h3>
+                    <p className="text-gray-700 mb-4 text-center leading-relaxed">
+                      {program.description}
+                    </p>
+                    <div className="bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white text-center py-2 px-4 rounded-lg">
+                      <p className="text-sm font-bold">{program.beneficiaries}</p>
+                    </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="font-bold text-[#003366] mb-3 text-xl text-center">
-                    {program.title}
-                  </h3>
-                  <p className="text-gray-700 mb-4 text-center leading-relaxed">
-                    {program.description}
-                  </p>
-                  <div className="bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white text-center py-2 px-4 rounded-lg">
-                    <p className="text-sm font-bold">{program.beneficiaries}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -236,7 +150,7 @@ export function TransformPage() {
         </div>
 
         <div className="max-w-4xl mx-auto space-y-6">
-          {updates.map((update, index) => (
+          {c.updates?.map((update: any, index: number) => (
             <div key={index} className="bg-white border-l-4 border-[#00CED1] rounded-r-2xl p-6 shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">

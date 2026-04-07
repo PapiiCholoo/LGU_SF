@@ -17,14 +17,14 @@ import {
   Newspaper,
   Lightbulb
 } from 'lucide-react';
-import fiestaImage from '../assets/fiesta.png';
-import heroBg from '../assets/hero_bg.jpg';
-import { BackendStatus } from './backend/BackendStatus';
-import { UserDirectory } from './backend/UserDirectory';
 import { HeroCarousel } from './HeroCarousel';
-import isarog from '../assets/isarog.jpg';
-import sfbeach from '../assets/sfbeach.jpg';
-import fiesta2 from '../assets/fiesta2.jpg';
+import { useContent } from '../contexts/ContentContext';
+
+const IconMap: Record<string, any> = {
+  Sparkles, HandHeart, Megaphone, ArrowRight, TrendingUp, Award, Shield,
+  Building2, Users, Heart, Briefcase, FileText, GraduationCap, Palmtree,
+  Newspaper, Lightbulb
+};
 
 type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
@@ -33,24 +33,18 @@ interface HomePageProps {
 }
 
 export function HomePage({ onNavigate }: HomePageProps) {
-
-  const heroImages = [
-    heroBg,
-    isarog,
-    sfbeach,
-    fiesta2
-  ];
+  const { content } = useContent();
+  const c = content.home;
 
   return (
-
     <div>
       <HeroCarousel
         pageId="home"
-        title="San Fernando"
-        subtitle="Gateway to the Isarog Wonders"
-        description="Experience the rich heritage, vibrant culture, and natural beauty of our beloved municipality."
+        title={c.title}
+        subtitle={c.subtitle}
+        description={c.description}
         icon={Palmtree}
-        defaultImages={heroImages}
+        defaultImages={c.heroImages || []}
       />
 
       {/* Four Key Sections Grid */}
@@ -64,15 +58,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <Sparkles className="text-[#FFD700]" size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-[#003366] mb-3">
-              Transform
-            </h3>
-            <p className="text-[#003366]/80 mb-4">
-              Updates, programs, and development initiatives transforming our community
-            </p>
+            <h3 className="text-2xl font-bold text-[#003366] mb-3">Transform</h3>
+            <p className="text-[#003366]/80 mb-4">Updates, programs, and development initiatives transforming our community</p>
             <div className="flex items-center text-[#003366] font-semibold">
-              Learn More
-              <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
+              Learn More <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
             </div>
           </button>
 
@@ -84,15 +73,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <Palmtree className="text-[#00CED1]" size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Explore
-            </h3>
-            <p className="text-white/90 mb-4">
-              Tourism destinations and rich information about San Fernando
-            </p>
+            <h3 className="text-2xl font-bold text-white mb-3">Explore</h3>
+            <p className="text-white/90 mb-4">Tourism destinations and rich information about San Fernando</p>
             <div className="flex items-center text-white font-semibold">
-              Discover More
-              <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
+              Discover More <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
             </div>
           </button>
 
@@ -104,15 +88,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <HandHeart className="text-[#003366]" size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Serve
-            </h3>
-            <p className="text-white/90 mb-4">
-              LGU services, offices, citizen's charter, and organizational structure
-            </p>
+            <h3 className="text-2xl font-bold text-white mb-3">Serve</h3>
+            <p className="text-white/90 mb-4">LGU services, offices, citizen's charter, and organizational structure</p>
             <div className="flex items-center text-white font-semibold">
-              View Services
-              <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
+              View Services <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
             </div>
           </button>
 
@@ -124,55 +103,52 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <Megaphone className="text-[#17a2b8]" size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Inform
-            </h3>
-            <p className="text-white/90 mb-4">
-              Latest announcements and updates about municipal activities
-            </p>
+            <h3 className="text-2xl font-bold text-white mb-3">Inform</h3>
+            <p className="text-white/90 mb-4">Latest announcements and updates about municipal activities</p>
             <div className="flex items-center text-white font-semibold">
-              Read Updates
-              <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
+              Read Updates <ArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" size={20} />
             </div>
           </button>
         </div>
       </section>
 
       {/* Featured Event - Fiesta Banner */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-          <img
-            src={fiestaImage}
-            alt="Happy Fiesta - Brgy. Pinamasagan"
-            className="w-full h-[400px] md:h-[500px] object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
-            <div className="container mx-auto px-8 py-12 h-full flex flex-col justify-center max-w-2xl">
-              <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
-                FEATURED EVENT
+      {c.featuredEvent && (
+        <section className="container mx-auto px-4 py-12">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src={c.featuredEvent.image}
+              alt={c.featuredEvent.title}
+              className="w-full h-[400px] md:h-[500px] object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent">
+              <div className="container mx-auto px-8 py-12 h-full flex flex-col justify-center max-w-2xl">
+                <div className="bg-[#FFD700] text-[#003366] inline-block px-4 py-2 rounded-full text-sm font-bold mb-4 w-fit">
+                  {c.featuredEvent.tag}
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
+                  {c.featuredEvent.title}
+                </h2>
+                <p className="text-xl md:text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
+                  {c.featuredEvent.subtitle}
+                </p>
+                <p className="text-xl text-white mb-6 drop-shadow-lg">
+                  {c.featuredEvent.date}
+                </p>
+                <p className="text-lg text-white/90 mb-2 drop-shadow-md">
+                  {c.featuredEvent.greetings}
+                </p>
+                <p className="text-xl text-white font-semibold drop-shadow-lg">
+                  {c.featuredEvent.mayorName}
+                </p>
+                <p className="text-lg text-[#00CED1] italic drop-shadow-md">
+                  {c.featuredEvent.mayorTitle}
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-md">
-                Happy Fiesta!
-              </h2>
-              <p className="text-xl md:text-2xl text-[#FFD700] font-bold mb-2 drop-shadow-lg">
-                Brgy. Pinamasagan
-              </p>
-              <p className="text-xl text-white mb-6 drop-shadow-lg">
-                January 18-19, 2026
-              </p>
-              <p className="text-lg text-white/90 mb-2 drop-shadow-md">
-                Greetings from:
-              </p>
-              <p className="text-xl text-white font-semibold drop-shadow-lg">
-                Hon. Betty Ann Kristine Danabar-Fulgentes
-              </p>
-              <p className="text-lg text-[#00CED1] italic drop-shadow-md">
-                Municipal Mayor
-              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Latest Updates & Announcements */}
       <section className="bg-gradient-to-b from-gray-50 to-white py-16">
@@ -192,65 +168,30 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white border-2 border-[#00CED1]/20 rounded-2xl p-6 hover:shadow-xl transition-all hover:border-[#00CED1]">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#FFD700] rounded-lg flex items-center justify-center">
-                  <Lightbulb className="text-[#003366]" size={20} />
+            {c.latestUpdates?.map((update: any, idx: number) => {
+              const IconComp = IconMap[update.iconType] || Lightbulb;
+              return (
+                <div key={idx} className="bg-white border-2 border-[#00CED1]/20 rounded-2xl p-6 hover:shadow-xl transition-all hover:border-[#00CED1]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 ${update.colorClass2} rounded-lg flex items-center justify-center`}>
+                      <IconComp className={update.colorClass2.includes('FFD700') ? 'text-[#003366]' : 'text-white'} size={20} />
+                    </div>
+                    <span className={`bg-gradient-to-r ${update.colorClass1} ${update.colorClass1.includes('FFD700') ? 'text-[#003366]' : 'text-white'} text-xs px-3 py-1 rounded-full font-bold`}>
+                      {update.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-[#003366] mb-3 text-xl">
+                    {update.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-3">
+                    {update.date}
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    {update.description}
+                  </p>
                 </div>
-                <span className="bg-gradient-to-r from-[#FFD700] to-[#F0E68C] text-[#003366] text-xs px-3 py-1 rounded-full font-bold">
-                  DEVELOPMENT
-                </span>
-              </div>
-              <h3 className="font-bold text-[#003366] mb-3 text-xl">
-                New Infrastructure Projects 2026
-              </h3>
-              <p className="text-sm text-gray-500 mb-3">
-                January 20, 2026
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                San Fernando announces major infrastructure development initiatives including road improvements and public facilities.
-              </p>
-            </div>
-
-            <div className="bg-white border-2 border-[#00CED1]/20 rounded-2xl p-6 hover:shadow-xl transition-all hover:border-[#00CED1]">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#00CED1] rounded-lg flex items-center justify-center">
-                  <Heart className="text-white" size={20} />
-                </div>
-                <span className="bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white text-xs px-3 py-1 rounded-full font-bold">
-                  HEALTH
-                </span>
-              </div>
-              <h3 className="font-bold text-[#003366] mb-3 text-xl">
-                Free Health Services Program
-              </h3>
-              <p className="text-sm text-gray-500 mb-3">
-                January 18, 2026
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Municipal health center offers free medical consultations and health screenings for all residents this month.
-              </p>
-            </div>
-
-            <div className="bg-white border-2 border-[#00CED1]/20 rounded-2xl p-6 hover:shadow-xl transition-all hover:border-[#00CED1]">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#003366] rounded-lg flex items-center justify-center">
-                  <Briefcase className="text-white" size={20} />
-                </div>
-                <span className="bg-gradient-to-r from-[#003366] to-[#004d7a] text-white text-xs px-3 py-1 rounded-full font-bold">
-                  BUSINESS
-                </span>
-              </div>
-              <h3 className="font-bold text-[#003366] mb-3 text-xl">
-                Business Permit Renewal Reminder
-              </h3>
-              <p className="text-sm text-gray-500 mb-3">
-                January 15, 2026
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                Annual business permit renewal is now open. Submit your applications before the January 31 deadline.
-              </p>
-            </div>
+              )
+            })}
           </div>
 
           <div className="text-center">
@@ -277,121 +218,22 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center group">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#FFD700] to-[#F0E68C] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-              <TrendingUp className="text-[#003366]" size={48} />
-            </div>
-            <h3 className="font-bold text-[#003366] mb-3 text-xl">
-              Strength
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Building a robust and capable local government that serves with power and purpose
-            </p>
-          </div>
-
-          <div className="text-center group">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#00CED1] to-[#20B2AA] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-              <Shield className="text-white" size={48} />
-            </div>
-            <h3 className="font-bold text-[#003366] mb-3 text-xl">
-              Resilience
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Adapting and thriving through challenges with unwavering determination
-            </p>
-          </div>
-
-          <div className="text-center group">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#003366] to-[#004d7a] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-              <Users className="text-white" size={48} />
-            </div>
-            <h3 className="font-bold text-[#003366] mb-3 text-xl">
-              Unity
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Working together as one community towards shared goals and prosperity
-            </p>
-          </div>
-
-          <div className="text-center group">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#17a2b8] to-[#00CED1] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-              <Award className="text-white" size={48} />
-            </div>
-            <h3 className="font-bold text-[#003366] mb-3 text-xl">
-              Progress
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Continuously advancing and improving for a better future for all
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Access Services */}
-      <section className="bg-gradient-to-br from-[#00CED1] via-[#20B2AA] to-[#17a2b8] py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white">
-              Quick Access to Services
-            </h2>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
-              Essential municipal services at your fingertips
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {[
-              { icon: FileText, label: 'Documents', color: 'from-[#FFD700] to-[#F0E68C]' },
-              { icon: Briefcase, label: 'Business', color: 'from-[#003366] to-[#004d7a]' },
-              { icon: Building2, label: 'Building', color: 'from-[#FFD700] to-[#F0E68C]' },
-              { icon: Users, label: 'Community', color: 'from-[#003366] to-[#004d7a]' },
-              { icon: Heart, label: 'Social', color: 'from-[#FFD700] to-[#F0E68C]' },
-              { icon: GraduationCap, label: 'Education', color: 'from-[#003366] to-[#004d7a]' }
-            ].map((service, index) => (
-              <button
-                key={index}
-                onClick={() => onNavigate('serve')}
-                className="bg-white rounded-2xl p-6 hover:shadow-2xl transition-all transform hover:-translate-y-2 group"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-md`}>
-                  <service.icon className="text-white" size={28} />
+          {c.kusogValues?.map((val: any, idx: number) => {
+            const IconComp = IconMap[val.iconType] || TrendingUp;
+            return (
+              <div key={idx} className="text-center group">
+                <div className={`w-24 h-24 bg-gradient-to-br ${val.colorClass} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <IconComp className={val.colorClass.includes('FFD700') ? 'text-[#003366]' : 'text-white'} size={48} />
                 </div>
-                <p className="font-bold text-[#003366] text-sm">
-                  {service.label}
+                <h3 className="font-bold text-[#003366] mb-3 text-xl">
+                  {val.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {val.desc}
                 </p>
-              </button>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <button
-              onClick={() => onNavigate('serve')}
-              className="bg-white text-[#00CED1] px-10 py-4 rounded-xl font-bold hover:bg-[#FFD700] hover:text-[#003366] transition-all shadow-xl text-lg inline-flex items-center gap-2"
-            >
-              View All Services
-              <ArrowRight size={24} />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Live backend integration */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4 space-y-10">
-          <div className="text-center">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-black">Connected Services</h2>
-
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-              These blocks are powered by the Node.js + MySQL API. Use them to verify the deployment and manage sample users in your database.
-            </p>
-            <br></br>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <BackendStatus />
-            <UserDirectory />
-          </div>
-
+              </div>
+            )
+          })}
         </div>
       </section>
     </div>

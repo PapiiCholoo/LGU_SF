@@ -12,12 +12,17 @@ import {
   Lightbulb,
   Heart
 } from 'lucide-react';
-
-import fiestaImage from '../assets/fiesta.png';
 import { HeroCarousel } from './HeroCarousel';
+import { useContent } from '../contexts/ContentContext';
+
+const IconMap: Record<string, any> = {
+  Megaphone, Calendar, AlertCircle, Newspaper, Filter, Trophy, Briefcase, Building2, Users, Lightbulb, Heart
+};
 
 export function InformPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { content } = useContent();
+  const c = content.inform;
 
   const categories = [
     { id: 'all', label: 'All Updates', icon: Newspaper },
@@ -28,139 +33,22 @@ export function InformPage() {
     { id: 'community', label: 'Community', icon: Users }
   ];
 
-  const announcements = [
-    {
-      id: 1,
-      title: 'Happy Fiesta - Brgy. Pinamasagan',
-      category: 'events',
-      type: 'Event',
-      date: 'January 18-19, 2026',
-      description: 'Join us in celebrating the annual fiesta of Barangay Pinamasagan with cultural activities, food fair, and community programs. Greetings from Hon. Betty Ann Kristine Danabar-Fulgentes, Municipal Mayor.',
-      image: fiestaImage,
-      color: 'from-[#FFD700] to-[#F0E68C]',
-      priority: 'featured'
-    },
-    {
-      id: 2,
-      title: 'New Infrastructure Projects Announcement',
-      category: 'announcements',
-      type: 'Development',
-      date: 'January 20, 2026',
-      description: 'The municipality announces major infrastructure development initiatives including road improvements, public facilities enhancement, and water system upgrades across all barangays.',
-      color: 'from-[#00CED1] to-[#20B2AA]',
-      priority: 'high'
-    },
-    {
-      id: 3,
-      title: 'Free Health Services Program this Month',
-      category: 'health',
-      type: 'Health Advisory',
-      date: 'January 18, 2026',
-      description: 'Municipal Health Center offers free medical consultations, health screenings, and medicines for all residents. Schedule your appointment at the health office.',
-      color: 'from-[#003366] to-[#004d7a]',
-      priority: 'high'
-    },
-    {
-      id: 4,
-      title: 'Business Permit Renewal Deadline Reminder',
-      category: 'business',
-      type: 'Business Notice',
-      date: 'January 15, 2026',
-      description: 'Annual business permit renewal is now open. All business owners must submit renewal applications before the January 31, 2026 deadline to avoid penalties.',
-      color: 'from-[#17a2b8] to-[#00CED1]',
-      priority: 'normal'
-    },
-    {
-      id: 5,
-      title: 'Youth Skills Training Program Registration',
-      category: 'community',
-      type: 'Program Update',
-      date: 'January 12, 2026',
-      description: 'Registration now open for the Youth Skills Development Program offering free technical and vocational training. Limited slots available.',
-      color: 'from-[#FFD700] to-[#F0E68C]',
-      priority: 'normal'
-    },
-    {
-      id: 6,
-      title: 'Senior Citizens Monthly Pension Distribution',
-      category: 'announcements',
-      type: 'Social Welfare',
-      date: 'January 10, 2026',
-      description: 'Senior citizens are reminded to claim their monthly pension at the Municipal Social Welfare Office. Bring valid IDs and senior citizen cards.',
-      color: 'from-[#003366] to-[#004d7a]',
-      priority: 'normal'
-    },
-    {
-      id: 7,
-      title: 'Community Clean-Up Drive This Weekend',
-      category: 'community',
-      type: 'Community Event',
-      date: 'January 8, 2026',
-      description: 'Join the municipal-wide clean-up and tree planting activity. Volunteers needed in all barangays. Free snacks and certificates will be provided.',
-      color: 'from-[#00CED1] to-[#20B2AA]',
-      priority: 'normal'
-    },
-    {
-      id: 8,
-      title: 'New Building Permit Requirements',
-      category: 'announcements',
-      type: 'Policy Update',
-      date: 'January 5, 2026',
-      description: 'Updated requirements for building permit applications now in effect. Check with the Municipal Engineer\'s Office for the complete list.',
-      color: 'from-[#17a2b8] to-[#00CED1]',
-      priority: 'normal'
-    },
-    {
-      id: 9,
-      title: 'Scholarship Application Period Opens',
-      category: 'announcements',
-      type: 'Education',
-      date: 'January 3, 2026',
-      description: 'Municipal scholarship program for Academic Year 2026-2027 is now accepting applications. Available for high school and college students.',
-      color: 'from-[#FFD700] to-[#F0E68C]',
-      priority: 'normal'
-    }
-  ];
-
-  const upcomingEvents = [
-    {
-      date: 'Jan 25',
-      title: 'Job Fair 2026',
-      location: 'Municipal Gymnasium'
-    },
-    {
-      date: 'Jan 28',
-      title: 'Farmers Consultation Meeting',
-      location: 'Agriculture Office'
-    },
-    {
-      date: 'Feb 1',
-      title: 'Youth Leadership Summit',
-      location: 'Municipal Hall'
-    },
-    {
-      date: 'Feb 5',
-      title: 'Health and Wellness Fair',
-      location: 'Town Plaza'
-    }
-  ];
-
   const filteredAnnouncements = selectedCategory === 'all'
-    ? announcements
-    : announcements.filter(a => a.category === selectedCategory);
+    ? c.announcements
+    : c.announcements?.filter((a: any) => a.category === selectedCategory);
 
-  const featuredAnnouncement = announcements.find(a => a.priority === 'featured');
+  const featuredAnnouncement = c.announcements?.find((a: any) => a.priority === 'featured');
 
   return (
     <div>
       {/* Hero Section */}
       <HeroCarousel
         pageId="inform"
-        title="Inform"
-        subtitle="Stay Updated with the Latest News & Announcements"
-        description="Get the latest information about municipal activities, programs, events, and important announcements from San Fernando."
+        title={c.title}
+        subtitle={c.subtitle}
+        description={c.description}
         icon={Megaphone}
-        defaultImages={[fiestaImage]}
+        defaultImages={c.heroImages || []}
       />
 
       {/* Featured Announcement */}
@@ -232,14 +120,14 @@ export function InformPage() {
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-3xl font-bold text-[#003366]">
-                {selectedCategory === 'all' ? 'All Updates' : categories.find(c => c.id === selectedCategory)?.label}
+                {selectedCategory === 'all' ? 'All Updates' : categories.find(cat => cat.id === selectedCategory)?.label}
               </h2>
               <span className="text-sm text-gray-500">
-                {filteredAnnouncements.length} updates
+                {filteredAnnouncements?.length || 0} updates
               </span>
             </div>
 
-            {filteredAnnouncements.filter(a => a.priority !== 'featured').map((announcement) => (
+            {filteredAnnouncements?.filter((a: any) => a.priority !== 'featured').map((announcement: any) => (
               <div key={announcement.id} className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all hover:border-[#00CED1]">
                 <div className={`bg-gradient-to-r ${announcement.color} p-6`}>
                   <div className="flex items-start justify-between mb-3">
@@ -281,12 +169,12 @@ export function InformPage() {
                 </h3>
               </div>
               <div className="space-y-4">
-                {upcomingEvents.map((event, index) => (
+                {c.upcomingEvents?.map((event: any, index: number) => (
                   <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all">
                     <div className="flex gap-4">
                       <div className="bg-[#FFD700] text-[#003366] rounded-lg px-3 py-2 text-center flex-shrink-0">
-                        <div className="text-lg font-bold leading-none">{event.date.split(' ')[1]}</div>
-                        <div className="text-xs font-semibold">{event.date.split(' ')[0]}</div>
+                        <div className="text-lg font-bold leading-none">{event.date.split(' ')[1] || event.date}</div>
+                        <div className="text-xs font-semibold">{event.date.split(' ')[0] || ''}</div>
                       </div>
                       <div>
                         <h4 className="font-bold text-white mb-1">{event.title}</h4>
@@ -307,22 +195,12 @@ export function InformPage() {
                 </h3>
               </div>
               <ul className="space-y-3 text-[#003366]">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#003366] mt-1">•</span>
-                  <span className="text-sm">Business permit renewal deadline: January 31, 2026</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#003366] mt-1">•</span>
-                  <span className="text-sm">Municipal office hours: Monday-Friday, 8:00 AM - 5:00 PM</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#003366] mt-1">•</span>
-                  <span className="text-sm">Free health services available at the Municipal Health Center</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#003366] mt-1">•</span>
-                  <span className="text-sm">Report emergencies to the Municipal Disaster Risk Reduction Office</span>
-                </li>
+                {c.reminders?.map((reminder: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-[#003366] mt-1">•</span>
+                    <span className="text-sm">{reminder}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 

@@ -3,15 +3,17 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './components/HomePage';
 import { ServicesPage } from './components/ServicesPage';
-
+import { AuthProvider } from './contexts/AuthContext';
+import { ContentProvider } from './contexts/ContentContext';
 import { TransformPage } from './components/TransformPage';
 import { InformPage } from './components/InformPage';
 import { ExplorePage } from './components/ExplorePage';
 
 import { ExecutiveAdmin } from './components/cms/ExecutiveAdmin';
 import { LegislativeAdmin } from './components/cms/LegislativeAdmin';
+import { AdminDashboard } from './components/AdminDashboard';
 
-type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative';
+type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative' | 'admin-dashboard';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -45,23 +47,29 @@ export default function App() {
         return <ExecutiveAdmin />;
       case 'admin-legislative':
         return <LegislativeAdmin />;
+      case 'admin-dashboard':
+        return <AdminDashboard />;
       default:
         return <HomePage onNavigate={handleNavigate} />;
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Header currentPage={currentPage} onNavigate={handleNavigate as any} />
-      <main className="flex-grow relative overflow-hidden">
-        <div
-          className={`transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
-            }`}
-        >
-          {renderPage()}
+    <AuthProvider>
+      <ContentProvider>
+        <div className="min-h-screen flex flex-col bg-white">
+          <Header currentPage={currentPage} onNavigate={handleNavigate as any} />
+          <main className="flex-grow relative overflow-hidden">
+            <div
+              className={`transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
+                }`}
+            >
+              {renderPage()}
+            </div>
+          </main>
+          <Footer onNavigate={handleNavigate as any} />
         </div>
-      </main>
-      <Footer onNavigate={handleNavigate as any} />
-    </div>
+      </ContentProvider>
+    </AuthProvider>
   );
 }

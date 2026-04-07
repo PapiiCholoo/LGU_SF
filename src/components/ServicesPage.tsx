@@ -15,8 +15,7 @@ import {
   HandHeart
 } from 'lucide-react';
 import { HeroCarousel } from './HeroCarousel';
-import heroBg from '../assets/hero_bg.jpg';
-import sfbeach from '../assets/sfbeach.jpg';
+import { useContent } from '../contexts/ContentContext';
 
 interface Service {
   id: number;
@@ -25,12 +24,17 @@ interface Service {
   description: string;
   requirements: string[];
   processingTime: string;
-  icon: React.ElementType;
+  iconType?: string;
 }
 
+const IconMap: Record<string, any> = {
+  FileText, Briefcase, Building2, Heart, GraduationCap, Scale, Home, Leaf
+};
 
 export function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const { content } = useContent();
+  const c = content.serve;
 
   useEffect(() => {
     if (selectedService) {
@@ -44,243 +48,23 @@ export function ServicesPage() {
     };
   }, [selectedService]);
 
-  const services: Service[] = [
-    // Civil Services
-    {
-      id: 1,
-      title: 'Birth Certificate',
-      category: 'Civil Services',
-      description: 'Request for certified true copy of birth certificate registered in San Fernando.',
-      requirements: [
-        'Valid government-issued ID',
-        'Payment of documentary stamp tax',
-        'Completed application form',
-        'Authorization letter (if representative)'
-      ],
-      processingTime: '3-5 business days',
-      icon: FileText
-    },
-    {
-      id: 2,
-      title: 'Marriage Certificate',
-      category: 'Civil Services',
-      description: 'Request for certified true copy of marriage certificate.',
-      requirements: [
-        'Valid government-issued ID',
-        'Payment of documentary stamp tax',
-        'Marriage details (date, names)',
-        'Authorization letter (if representative)'
-      ],
-      processingTime: '3-5 business days',
-      icon: FileText
-    },
-    {
-      id: 3,
-      title: 'Death Certificate',
-      category: 'Civil Services',
-      description: 'Request for certified true copy of death certificate.',
-      requirements: [
-        'Valid government-issued ID of requester',
-        'Payment of documentary stamp tax',
-        'Death details',
-        'Proof of relationship to deceased'
-      ],
-      processingTime: '3-5 business days',
-      icon: FileText
-    },
-    {
-      id: 4,
-      title: 'Community Tax Certificate (Cedula)',
-      category: 'Civil Services',
-      description: 'Issuance of community tax certificate for individuals and corporations.',
-      requirements: [
-        'Valid government-issued ID',
-        'Income tax return (for corporate)',
-        'Payment of community tax',
-        'Proof of residency'
-      ],
-      processingTime: 'Same day',
-      icon: FileText
-    },
-
-    // Business Services
-    {
-      id: 5,
-      title: 'Business Permit (New)',
-      category: 'Business Services',
-      description: 'Application for new business permit and license to operate.',
-      requirements: [
-        'DTI or SEC Registration',
-        'Barangay clearance',
-        'Fire safety inspection certificate',
-        'Sanitary permit',
-        'Proof of business location',
-        'Payment of fees and taxes'
-      ],
-      processingTime: '7-10 business days',
-      icon: Briefcase
-    },
-    {
-      id: 6,
-      title: 'Business Permit Renewal',
-      category: 'Business Services',
-      description: 'Annual renewal of existing business permit.',
-      requirements: [
-        'Previous business permit',
-        'Barangay clearance',
-        'Fire safety inspection certificate',
-        'Sanitary permit',
-        'Payment of annual fees'
-      ],
-      processingTime: '3-5 business days',
-      icon: Briefcase
-    },
-
-    // Building & Construction
-    {
-      id: 7,
-      title: 'Building Permit',
-      category: 'Building & Construction',
-      description: 'Application for construction or renovation of structures.',
-      requirements: [
-        'Land title or proof of ownership',
-        'Building plans (sealed by licensed engineer/architect)',
-        'Tax declaration',
-        'Barangay clearance',
-        'Locational clearance',
-        'Payment of permit fees'
-      ],
-      processingTime: '15-20 business days',
-      icon: Building2
-    },
-    {
-      id: 8,
-      title: 'Occupancy Permit',
-      category: 'Building & Construction',
-      description: 'Certificate of occupancy for completed structures.',
-      requirements: [
-        'Building permit',
-        'Certificate of final inspection',
-        'As-built plans',
-        'Payment of fees'
-      ],
-      processingTime: '10-15 business days',
-      icon: Home
-    },
-
-    // Social Services
-    {
-      id: 9,
-      title: 'Senior Citizen ID',
-      category: 'Social Services',
-      description: 'Issuance of senior citizen identification card.',
-      requirements: [
-        'Birth certificate or valid ID showing age (60+)',
-        '2x2 ID photo',
-        'Barangay certificate',
-        'Proof of residency'
-      ],
-      processingTime: '5-7 business days',
-      icon: Heart
-    },
-    {
-      id: 10,
-      title: 'PWD ID',
-      category: 'Social Services',
-      description: 'Issuance of person with disability identification card.',
-      requirements: [
-        'Medical certificate',
-        'Birth certificate',
-        '2x2 ID photo',
-        'Barangay certificate',
-        'Proof of residency'
-      ],
-      processingTime: '5-7 business days',
-      icon: Heart
-    },
-    {
-      id: 11,
-      title: 'Financial Assistance',
-      category: 'Social Services',
-      description: 'Application for various social welfare assistance programs.',
-      requirements: [
-        'Valid ID',
-        'Barangay certificate of indigency',
-        'Supporting documents (medical, etc.)',
-        'DSWD assessment form'
-      ],
-      processingTime: '10-15 business days',
-      icon: Heart
-    },
-
-    // Educational Services
-    {
-      id: 12,
-      title: 'Scholarship Program',
-      category: 'Educational Services',
-      description: 'Application for municipal scholarship grants.',
-      requirements: [
-        'Certificate of grades (previous semester)',
-        'Certificate of enrollment',
-        'Certificate of indigency',
-        'Birth certificate',
-        'Valid ID',
-        'Barangay clearance'
-      ],
-      processingTime: '15-20 business days',
-      icon: GraduationCap
-    },
-
-    // Legal & Clearances
-    {
-      id: 13,
-      title: 'Municipal Clearance',
-      category: 'Legal & Clearances',
-      description: 'Issuance of municipal clearance certificate.',
-      requirements: [
-        'Valid government-issued ID',
-        'Barangay clearance',
-        'Cedula',
-        'Payment of clearance fee',
-        'Purpose of clearance'
-      ],
-      processingTime: '1-3 business days',
-      icon: Scale
-    },
-
-    // Environmental Services
-    {
-      id: 14,
-      title: 'Garbage Collection Request',
-      category: 'Environmental Services',
-      description: 'Request for special garbage collection service.',
-      requirements: [
-        'Barangay certification',
-        'Valid ID',
-        'Payment of collection fee (if applicable)'
-      ],
-      processingTime: '3-5 business days',
-      icon: Leaf
-    }
-  ];
-
-  const categories = Array.from(new Set(services.map(s => s.category)));
+  const categories = Array.from(new Set(c.services?.map((s: any) => s.category) || []));
 
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header */}
       <HeroCarousel
         pageId="serve"
-        title="Serve"
-        subtitle="Dedicated to Serving the People of San Fernando"
-        description="Access essential municipal services, offices, and programs designed to serve our community with excellence."
+        title={c.title}
+        subtitle={c.subtitle}
+        description={c.description}
         icon={HandHeart}
-        defaultImages={[heroBg, sfbeach]}
+        defaultImages={c.heroImages || []}
       />
 
       {/* Services Content */}
       <div className="container mx-auto px-4 py-12">
-        {categories.map((category, catIndex) => (
+        {categories.map((category: any, catIndex: number) => (
           <div key={category} className="mb-12">
             <div className="flex items-center gap-4 mb-6">
               <div className={`w-12 h-1 bg-gradient-to-r ${catIndex % 4 === 0 ? 'from-[#FFD700] to-[#F0E68C]' :
@@ -293,13 +77,15 @@ export function ServicesPage() {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services
-                .filter(service => service.category === category)
-                .map((service, idx) => {
+              {c.services
+                ?.filter((service: any) => service.category === category)
+                .map((service: any, idx: number) => {
                   const colorClass = idx % 4 === 0 ? 'from-[#FFD700] to-[#F0E68C]' :
                     idx % 4 === 1 ? 'from-[#00CED1] to-[#20B2AA]' :
                       idx % 4 === 2 ? 'from-[#003366] to-[#004d7a]' :
                         'from-[#17a2b8] to-[#00CED1]';
+                  const IconComp = IconMap[service.iconType || ''] || FileText;
+                  
                   return (
                     <div
                       key={service.id}
@@ -307,7 +93,7 @@ export function ServicesPage() {
                     >
                       <div className={`bg-gradient-to-r ${colorClass} p-6`}>
                         <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center mb-4 shadow-md">
-                          <service.icon className="text-[#003366]" size={28} />
+                          <IconComp className="text-[#003366]" size={28} />
                         </div>
                         <h3 className="font-bold text-white mb-2 text-lg md:text-xl drop-shadow-md">
                           {service.title}
@@ -344,7 +130,10 @@ export function ServicesPage() {
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 bg-[#FFD700] rounded-xl flex items-center justify-center shadow-lg">
-                    <selectedService.icon className="text-[#003366]" size={32} />
+                    {(() => {
+                      const SelectedIconComp = IconMap[selectedService.iconType || ''] || FileText;
+                      return <SelectedIconComp className="text-[#003366]" size={32} />
+                    })()}
                   </div>
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold drop-shadow-md">{selectedService.title}</h3>
@@ -369,7 +158,7 @@ export function ServicesPage() {
               <div className="mb-6">
                 <h4 className="font-bold text-[#003366] mb-3 text-lg">Requirements</h4>
                 <ul className="space-y-2">
-                  {selectedService.requirements.map((req, index) => (
+                  {selectedService.requirements?.map((req: string, index: number) => (
                     <li key={index} className="flex gap-3">
                       <CheckCircle className="text-[#00CED1] flex-shrink-0 mt-0.5" size={20} />
                       <span className="text-gray-700">{req}</span>
@@ -431,7 +220,7 @@ export function ServicesPage() {
                     doc.text("Requirements to be attached with this form:", 20, 170);
 
                     doc.setFont("helvetica", "normal");
-                    selectedService.requirements.forEach((req, idx) => {
+                    selectedService.requirements?.forEach((req: string, idx: number) => {
                       // Checkbox
                       doc.rect(20, 178 + (idx * 10), 5, 5);
                       // Requirement text
@@ -439,7 +228,7 @@ export function ServicesPage() {
                     });
 
                     // Footer / Signature
-                    const signatureY = 190 + (selectedService.requirements.length * 10) + 20;
+                    const signatureY = 190 + ((selectedService.requirements?.length || 0) * 10) + 20;
                     doc.text("I hereby certify that the information provided above is true and correct.", 20, signatureY);
 
                     doc.line(20, signatureY + 30, 90, signatureY + 30);

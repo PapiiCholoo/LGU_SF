@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, Settings } from 'lucide-react';
 import LogoImage from '../assets/logo.png';
+import { useAuth } from '../contexts/AuthContext';
+import { LoginModal } from './LoginModal';
 
-type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative';
+type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform' | 'admin-executive' | 'admin-legislative' | 'admin-dashboard';
 
 interface HeaderProps {
   currentPage: Page;
@@ -11,6 +13,8 @@ interface HeaderProps {
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { isLoggedIn, logout } = useAuth();
 
   const navItems = [
     { id: 'home' as Page, label: 'Home' },
@@ -74,6 +78,44 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 {item.label}
               </button>
             ))}
+            
+            <div className="ml-4 flex items-center gap-2 border-l border-white/20 pl-4">
+              {isLoggedIn ? (
+                <>
+                  <button
+                    onClick={() => handleNavClick('admin-dashboard')}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg font-bold transition-all ${
+                      currentPage === 'admin-dashboard' 
+                        ? 'bg-[var(--color-brand-khaki)] text-slate-900 shadow-md' 
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    }`}
+                  >
+                    <Settings size={18} />
+                    <span>Admin</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      logout();
+                      if (currentPage === 'admin-dashboard') {
+                        onNavigate('home');
+                      }
+                    }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg font-medium text-red-200 hover:text-white hover:bg-red-500/20 transition-all"
+                    title="Logout"
+                  >
+                    <LogOut size={18} />
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => setShowLoginModal(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-[var(--color-brand-khaki)] text-slate-900 rounded-lg font-bold hover:bg-[var(--color-brand-turquoise)] transition-all shadow-md"
+                >
+                  <LogIn size={18} />
+                  <span>Login</span>
+                </button>
+              )}
+            </div>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -107,6 +149,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           </nav>
         </div>
       )}
+
+      <LoginModal 
+        isOpen={showLoginModal} 
+        onClose={() => setShowLoginModal(false)}
+        onSuccess={() => {
+          onNavigate('admin-dashboard');
+        }}
+      />
     </header>
   );
 }
