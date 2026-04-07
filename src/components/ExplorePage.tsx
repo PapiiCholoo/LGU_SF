@@ -1,8 +1,8 @@
-
 import beachImage from '../assets/sfbeach.jpg';
 import mountainImage from '../assets/isarog.jpg';
 import heritageImage from '../assets/heritage.jpg';
 import fiesta from '../assets/fiesta2.jpg';
+import { HeroCarousel } from './HeroCarousel';
 import {
   MapPin,
   Palmtree,
@@ -17,7 +17,6 @@ import {
   Award,
   TrendingUp
 } from 'lucide-react';
-
 
 export function ExplorePage() {
   const attractions = [
@@ -97,30 +96,14 @@ export function ExplorePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#00CED1] via-[#20B2AA] to-[#17a2b8] text-white py-20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '30px 30px'
-          }}></div>
-        </div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <Palmtree className="text-white" size={48} />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg">
-                Explore
-              </h1>
-            </div>
-            <p className="text-2xl mb-6 text-white/95 drop-shadow-md">
-              Discover the Beauty and Rich Culture of San Fernando
-            </p>
-            <p className="text-lg text-white/90 max-w-3xl mx-auto drop-shadow-md">
-              Explore our municipality's stunning attractions, vibrant culture, and warm community spirit.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel
+        pageId="explore"
+        title="Explore"
+        subtitle="Discover the Beauty and Rich Culture of San Fernando"
+        description="Explore our municipality's stunning attractions, vibrant culture, and warm community spirit."
+        icon={Palmtree}
+        defaultImages={[beachImage, mountainImage, heritageImage, fiesta]}
+      />
 
       {/* Municipality Facts */}
       <section className="container mx-auto px-4 py-16">

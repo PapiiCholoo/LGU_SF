@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Sparkles,
   HandHeart,
@@ -21,13 +21,7 @@ import fiestaImage from '../assets/fiesta.png';
 import heroBg from '../assets/hero_bg.jpg';
 import { BackendStatus } from './backend/BackendStatus';
 import { UserDirectory } from './backend/UserDirectory';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "./ui/carousel";
+import { HeroCarousel } from './HeroCarousel';
 import isarog from '../assets/isarog.jpg';
 import sfbeach from '../assets/sfbeach.jpg';
 import fiesta2 from '../assets/fiesta2.jpg';
@@ -36,32 +30,9 @@ type Page = 'home' | 'transform' | 'explore' | 'serve' | 'inform';
 
 interface HomePageProps {
   onNavigate: (page: Page) => void;
-
 }
 
-
 export function HomePage({ onNavigate }: HomePageProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []); const [api, setApi] = useState<any>();
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    const intervalId = setInterval(() => {
-      api.scrollNext();
-    }, 5000);
-
-    return () => clearInterval(intervalId);
-  }, [api]);
 
   const heroImages = [
     heroBg,
@@ -73,68 +44,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
   return (
 
     <div>
-      <section
-        className={`relative text-white overflow-hidden transition-all duration-700 ease-in-out origin-top ${isScrolled ? 'h-0 opacity-0 pointer-events-none -translate-y-10' : 'h-[65dvh] lg:h-[85vh] opacity-100 translate-y-0'
-          }`}
-      >
-
-        {/* Image Slider Background */}
-        <div className="absolute inset-0 select-none group">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              loop: true,
-              align: "start",
-            }}
-            className="w-full h-full"
-          >
-            <CarouselContent className="h-[65dvh] lg:h-[85vh] -ml-0">
-              {heroImages.map((img, index) => (
-                <CarouselItem key={index} className="pl-0 h-full w-full border-none">
-                  <div
-                    className="w-full h-full bg-cover bg-center md:bg-top"
-                    style={{
-                      backgroundImage: `url(${img})`,
-                    }}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            <CarouselPrevious className="left-4 lg:left-8 bg-black/20 hover:bg-black/40 border-white/30 text-white backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100" />
-            <CarouselNext className="right-4 lg:right-8 bg-black/20 hover:bg-black/40 border-white/30 text-white backdrop-blur-sm transition-opacity opacity-0 group-hover:opacity-100" />
-          </Carousel>
-        </div>
-
-
-
-
-
-
-        {/* Brand color atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#00CED1]/10 via-[#20B2AA]/10 to-[#FFD700]/10 pointer-events-none"></div>
-
-
-
-
-        {/* Pattern Overlay (your dotted texture) */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '40px 40px'
-            }}
-          ></div>
-        </div>
-
-        {/* Decorative wave */}
-        <div className="absolute -bottom-1 left-0 right-0 z-20 pointer-events-none translate-y-[1px]">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
-            <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <HeroCarousel
+        pageId="home"
+        title="San Fernando"
+        subtitle="Gateway to the Isarog Wonders"
+        description="Experience the rich heritage, vibrant culture, and natural beauty of our beloved municipality."
+        icon={Palmtree}
+        defaultImages={heroImages}
+      />
 
       {/* Four Key Sections Grid */}
       <section className="container mx-auto px-4 py-16">

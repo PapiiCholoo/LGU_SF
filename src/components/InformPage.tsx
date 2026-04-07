@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 import fiestaImage from '../assets/fiesta.png';
+import { HeroCarousel } from './HeroCarousel';
 
 export function InformPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -153,30 +154,14 @@ export function InformPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#17a2b8] via-[#00CED1] to-[#20B2AA] text-white py-20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-            backgroundSize: '24px 24px'
-          }}></div>
-        </div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <Megaphone className="text-white" size={48} />
-              <h1 className="text-5xl md:text-6xl font-bold drop-shadow-lg">
-                Inform
-              </h1>
-            </div>
-            <p className="text-2xl mb-6 text-white/95 drop-shadow-md">
-              Stay Updated with the Latest News & Announcements
-            </p>
-            <p className="text-lg text-white/90 max-w-3xl mx-auto drop-shadow-md">
-              Get the latest information about municipal activities, programs, events, and important announcements from San Fernando.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel
+        pageId="inform"
+        title="Inform"
+        subtitle="Stay Updated with the Latest News & Announcements"
+        description="Get the latest information about municipal activities, programs, events, and important announcements from San Fernando."
+        icon={Megaphone}
+        defaultImages={[fiestaImage]}
+      />
 
       {/* Featured Announcement */}
       {featuredAnnouncement && (

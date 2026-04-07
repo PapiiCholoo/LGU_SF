@@ -10,6 +10,9 @@ import {
   TrendingUp,
   ArrowRight
 } from 'lucide-react';
+import { HeroCarousel } from './HeroCarousel';
+import heroBg from '../assets/hero_bg.jpg';
+import isarog from '../assets/isarog.jpg';
 
 export function TransformPage() {
   const developmentProjects = [
@@ -111,31 +114,14 @@ export function TransformPage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#FFD700] via-[#F0E68C] to-[#FFD700] text-[#003366] py-20">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(45deg, #003366 25%, transparent 25%), linear-gradient(-45deg, #003366 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #003366 75%), linear-gradient(-45deg, transparent 75%, #003366 75%)',
-            backgroundSize: '20px 20px',
-            backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
-          }}></div>
-        </div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <Lightbulb className="text-[#003366]" size={48} />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                Transform
-              </h1>
-            </div>
-            <p className="text-2xl mb-6 text-[#003366]/90">
-              Building a Better San Fernando Through Innovation & Development
-            </p>
-            <p className="text-lg text-[#003366]/80 max-w-3xl mx-auto">
-              Discover the programs, projects, and initiatives that are transforming our municipality into a progressive and sustainable community.
-            </p>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel
+        pageId="transform"
+        title="Transform"
+        subtitle="Building a Better San Fernando Through Innovation & Development"
+        description="Discover the programs, projects, and initiatives that are transforming our municipality into a progressive and sustainable community."
+        icon={Lightbulb}
+        defaultImages={[heroBg, isarog]}
+      />
 
       {/* Development Projects */}
       <section className="container mx-auto px-4 py-16">

@@ -14,6 +14,9 @@ import {
   X,
   HandHeart
 } from 'lucide-react';
+import { HeroCarousel } from './HeroCarousel';
+import heroBg from '../assets/hero_bg.jpg';
+import sfbeach from '../assets/sfbeach.jpg';
 
 interface Service {
   id: number;
@@ -28,10 +31,9 @@ interface Service {
 
 export function ServicesPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [applyService, setApplyService] = useState<Service | null>(null);
 
   useEffect(() => {
-    if (selectedService || applyService) {
+    if (selectedService) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -40,7 +42,7 @@ export function ServicesPage() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [selectedService, applyService]);
+  }, [selectedService]);
 
   const services: Service[] = [
     // Civil Services
@@ -267,28 +269,14 @@ export function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Page Header */}
-      <div className="bg-gradient-to-r from-[#003366] via-[#004d7a] to-[#003366] text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(45deg, white 25%, transparent 25%), linear-gradient(-45deg, white 25%, transparent 25%)',
-            backgroundSize: '20px 20px'
-          }}></div>
-        </div>
-        <div className="relative container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <HandHeart className="text-[#FFD700]" size={48} />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg">Serve</h1>
-            </div>
-            <p className="text-2xl mb-6 text-white/95 drop-shadow-md">
-              Dedicated to Serving the People of San Fernando
-            </p>
-            <p className="text-lg text-white/90 max-w-3xl mx-auto drop-shadow-md">
-              Access essential municipal services, offices, and programs designed to serve our community with excellence.
-            </p>
-          </div>
-        </div>
-      </div>
+      <HeroCarousel
+        pageId="serve"
+        title="Serve"
+        subtitle="Dedicated to Serving the People of San Fernando"
+        description="Access essential municipal services, offices, and programs designed to serve our community with excellence."
+        icon={HandHeart}
+        defaultImages={[heroBg, sfbeach]}
+      />
 
       {/* Services Content */}
       <div className="container mx-auto px-4 py-12">
@@ -402,63 +390,76 @@ export function ServicesPage() {
 
               <button
                 onClick={() => {
-                  setSelectedService(null);
-                  setApplyService(selectedService);
+                  import('jspdf').then(({ jsPDF }) => {
+                    const doc = new jsPDF();
+
+                    // Header
+                    doc.setFontSize(16);
+                    doc.setFont("helvetica", "bold");
+                    doc.text("LGU SAN FERNANDO - APPLICATION FORM", 105, 20, { align: "center" });
+
+                    doc.setFontSize(12);
+                    doc.setFont("helvetica", "normal");
+
+                    // Service Details
+                    doc.text(`Service: ${selectedService.title}`, 20, 40);
+                    doc.text(`Category: ${selectedService.category}`, 20, 50);
+
+                    // Instructions
+                    doc.setFont("helvetica", "bold");
+                    doc.text("Please complete the following details:", 20, 70);
+
+                    // Form Fields
+                    doc.setFont("helvetica", "normal");
+                    doc.text("Full Name:", 20, 90);
+                    doc.line(50, 90, 190, 90);
+
+                    doc.text("Address:", 20, 105);
+                    doc.line(45, 105, 190, 105);
+
+                    doc.text("Contact Number:", 20, 120);
+                    doc.line(60, 120, 190, 120);
+
+                    doc.text("Email Address:", 20, 135);
+                    doc.line(55, 135, 190, 135);
+
+                    doc.text("Date of Birth:", 20, 150);
+                    doc.line(50, 150, 190, 150);
+
+                    // Requirements section
+                    doc.setFont("helvetica", "bold");
+                    doc.text("Requirements to be attached with this form:", 20, 170);
+
+                    doc.setFont("helvetica", "normal");
+                    selectedService.requirements.forEach((req, idx) => {
+                      // Checkbox
+                      doc.rect(20, 178 + (idx * 10), 5, 5);
+                      // Requirement text
+                      doc.text(req, 30, 183 + (idx * 10));
+                    });
+
+                    // Footer / Signature
+                    const signatureY = 190 + (selectedService.requirements.length * 10) + 20;
+                    doc.text("I hereby certify that the information provided above is true and correct.", 20, signatureY);
+
+                    doc.line(20, signatureY + 30, 90, signatureY + 30);
+                    doc.text("Signature over Printed Name", 25, signatureY + 35);
+
+                    doc.line(130, signatureY + 30, 190, signatureY + 30);
+                    doc.text("Date", 155, signatureY + 35);
+
+                    // Save the PDF
+                    doc.save(`${selectedService.title.replace(/\s+/g, '_')}_Application_Form.pdf`);
+                  });
                 }}
                 className="w-full bg-gradient-to-r from-[#00CED1] to-[#20B2AA] text-white py-4 px-6 rounded-xl font-bold hover:shadow-xl transition-all"
               >
-                Apply for This Service
+                Download application form (PDF)
               </button>
 
               <p className="text-sm text-gray-500 text-center mt-4">
-                Please visit the Municipal Hall to process this service
+                Please visit the Municipal Hall to process this service after completing the form
               </p>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
-
-      {/*Apply Now Section */}
-      {applyService && createPortal(
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="sticky top-0 bg-gradient-to-r from-[#003366] to-[#004d7a] text-white p-6 rounded-t-2xl">
-              <div className="flex justify-between items-start">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-[#FFD700] rounded-xl flex items-center justify-center shadow-lg">
-                    <applyService.icon className="text-[#003366]" size={32} />
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold drop-shadow-md">Apply: {applyService.title}</h3>
-                    <p className="text-[#FFD700] font-semibold">{applyService.category}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setApplyService(null)}
-                  className="text-white hover:bg-white/20 rounded-lg p-2 transition-colors"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="text-center py-12">
-                <div className="w-20 h-20 bg-[#00CED1]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FileText className="text-[#00CED1]" size={40} />
-                </div>
-                <h3 className="text-2xl font-bold text-[#003366] mb-2">Application Form</h3>
-                <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                  Please proceed to the Municipal Hall to formally submit your application and necessary requirements for this service.
-                </p>
-                <button
-                  onClick={() => setApplyService(null)}
-                  className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-xl transition-colors"
-                >
-                  Close
-                </button>
-              </div>
             </div>
           </div>
         </div>,
